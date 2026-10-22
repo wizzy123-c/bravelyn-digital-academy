@@ -1,53 +1,179 @@
-<svg width="1800" height="540" viewBox="0 0 1800 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Bravelyn Digital Academy logo</title>
-  <desc id="desc">The official Bravelyn Digital Academy logo.</desc>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#142b4a" />
+  <meta name="description" content="Bravelyn Digital Academy helps learners build practical digital, creative, and AI-enabled skills through guided online training, real assignments, and portfolio-ready projects." />
+  <meta name="keywords" content="digital academy, online learning, virtual assistant, graphic design, AI courses, social media management, content writing, website building" />
+  <meta property="og:title" content="Bravelyn Digital Academy | Learn Practical Skills. Build Real Proof." />
+  <meta property="og:description" content="Learn practical digital, creative and AI-enabled skills through guided training, assignments and portfolio-ready projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/bravelyn-exact-logo.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Bravelyn Digital Academy | Learn Practical Skills. Build Real Proof.</title>
+  <style>
+    :root{
+      --navy:#142b4a; --navy-2:#1c3257; --teal:#167d9a; --teal-2:#0d5d72;
+      --amber:#e7a64b; --amber-2:#f0b65f; --ink:#1f2d3d; --muted:#5e6f85;
+      --paper:#ffffff; --soft:#f4f7fa; --line:#dde7ef; --success:#1b8f5a;
+      --shadow:0 18px 55px rgba(20,43,74,0.12); --radius:22px; --container:1160px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block} a{color:inherit;text-decoration:none} button,input,select,textarea{font:inherit} button,a{-webkit-tap-highlight-color:transparent} h1,h2,h3,h4,p{margin-top:0}
+    .container{width:min(var(--container),calc(100% - 40px));margin-inline:auto}
+    .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+    .skip-link{position:absolute;left:-9999px;top:0;background:#fff;padding:10px;z-index:999;border-radius:10px}.skip-link:focus{left:12px;top:12px}
+    header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(221,231,239,0.9)}
+    .nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand img{width:720px;max-height:96px;object-fit:contain;border-radius:12px;display:block}
+    .nav-links{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0}
+    .nav-links a{text-decoration:none;font-size:0.92rem;font-weight:700;color:var(--navy);transition:color .2s ease}
+    .nav-links a:hover,.nav-links a:focus-visible{color:var(--teal)}
+    .nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;border-radius:999px;background:var(--teal);color:#fff!important;text-decoration:none;font-weight:800;transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
+    .nav-cta:hover,.btn:hover,.nav-cta:focus-visible,.btn:focus-visible{background:var(--teal-2);transform:translateY(-1px)}
+    .btn.secondary{background:transparent;color:var(--navy)!important;border:1px solid #bfd0df;box-shadow:none}.btn.secondary:hover,.btn.secondary:focus-visible{background:var(--soft);color:var(--navy)!important}
+    .btn.ghost{background:#fff;border:1px solid var(--line);color:var(--navy)!important;box-shadow:none}.btn.ghost:hover,.btn.ghost:focus-visible{background:var(--soft)}
+    .menu-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;color:var(--navy);font-size:1.2rem;cursor:pointer}
+    .hero{overflow:hidden;position:relative;padding:92px 0 84px;background:radial-gradient(ellipse at 90% 10%, rgba(22,125,154,.12), transparent 33%),linear-gradient(135deg,#f7f9fb 0%,#fff 62%,#f3faff 100%)}
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 13px;border-radius:999px;background:#e5f3f6;color:#126b83;font-size:0.8rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber);display:block}
+    h1{font-size:clamp(2.7rem,5vw,4.7rem);line-height:1.04;letter-spacing:-0.055em;color:var(--navy);margin:23px 0}
+    .accent{color:var(--teal)}
+    .hero-copy p{font-size:1.12rem;color:var(--muted);max-width:620px;margin:0}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 22px}
+    .hero-note{font-size:0.88rem;color:#738196;margin:0}
+    .hero-visual{position:relative;padding:24px}
+    .visual-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:30px;padding:28px;box-shadow:var(--shadow);transform:rotate(1deg)}
+    .logo-large{width:100%;max-width:620px;margin:6px auto 24px;display:block}
+    .mini-label{display:block;font-size:0.76rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal)}
+    .visual-card h3{font-size:1.45rem;color:var(--navy);margin:8px 0 15px;line-height:1.35}
+    .skill-pills{display:flex;flex-wrap:wrap;gap:8px}.skill-pills span{background:var(--soft);padding:7px 10px;border-radius:9px;font-size:0.8rem;font-weight:700;color:var(--ink)}
+    .floating-note{position:absolute;right:-2px;bottom:0;background:var(--navy);color:#fff;padding:14px 18px;border-radius:16px;box-shadow:var(--shadow);font-weight:700;font-size:0.88rem}
+    .trust-strip{padding:23px 0;background:var(--navy);color:#fff}.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}.trust-grid strong{display:block;font-size:1rem}.trust-grid span{font-size:0.83rem;color:rgba(255,255,255,0.8)}
+    section{padding:84px 0}.section-head{max-width:720px;margin:0 auto 42px;text-align:center}.section-kicker{color:var(--teal);font-size:0.78rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:800}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}.stat-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 18px;text-align:center}.stat-box strong{display:block;color:var(--navy);font-size:2rem;line-height:1}.stat-box span{font-size:0.9rem;color:var(--muted)}
+    footer{background:#0d2038;color:#fff;padding:48px 0 22px}.footer-top{display:flex;justify-content:space-between;gap:40px;padding-bottom:32px}.footer-brand img{width:500px;max-height:120px;object-fit:contain}.footer-brand p{color:rgba(255,255,255,0.8);max-width:520px}.footer-links{display:flex;gap:52px}.footer-links h3{margin:0 0 12px;color:#fff;font-size:1rem}.footer-links a{display:block;color:rgba(255,255,255,0.82);margin:8px 0}.footer-bottom{display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(255,255,255,0.14);padding-top:18px;font-size:0.8rem;color:rgba(255,255,255,0.7)}
+    @media(max-width:950px){.nav-links{gap:14px}.nav-links a{font-size:0.85rem}.brand img{width:520px}.hero-grid{gap:28px}.course-grid{grid-template-columns:repeat(2,1fr)}.process-grid{grid-template-columns:repeat(2,1fr)}.footer-top{flex-direction:column}} 
+    @media(max-width:760px){.container{width:min(100% - 30px,600px)}.nav{height:72px}.brand img{width:330px;max-height:70px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;left:15px;right:15px;top:72px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);flex-direction:column;align-items:flex-start}.nav-links.open{display:flex}.nav-links a{width:100%}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{text-align:center}.stats-grid,.process-grid,.testimonial-grid,.form-grid{grid-template-columns:1fr}} 
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <defs>
-    <linearGradient id="navyLeft" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0c2f5d"/>
-      <stop offset="100%" stop-color="#123d72"/>
-    </linearGradient>
-    <linearGradient id="tealGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#14b4d8"/>
-      <stop offset="100%" stop-color="#7be7dc"/>
-    </linearGradient>
-    <linearGradient id="goldWarm" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f5c067"/>
-      <stop offset="100%" stop-color="#de8c2b"/>
-    </linearGradient>
-  </defs>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Bravelyn Digital Academy home">
+        <img alt="Bravelyn Digital Academy logo" src="images/bravelyn-exact-logo.svg" style="height:auto;border-radius:16px" />
+      </a>
 
-  <g transform="translate(18,14)">
-    <path d="M126 28C80 47 38 79 18 120c-19 39-17 87 8 123 17 25 43 42 72 52 1 0 0 0 0 0-26-18-47-43-61-74-15-34-12-72 9-105 28-46 98-67 150-39 21 11 39 30 51 52v-42c-13-23-34-42-63-54-20-9-38-14-66-13Z" fill="#0d2d52" opacity="0.94"/>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">☰</button>
 
-    <path d="M182 20C73 51 20 137 20 244c0 84 48 153 135 190 38 16 75 24 111 24 34 0 59-13 59-38 0-21-15-36-35-42l-9-3c-42-12-81-27-118-58-38-32-52-63-52-109 0-58 31-103 79-125 31-14 69-19 113-18 18 0 35 2 52 6l14 3v-28c-19-6-38-10-58-11-38-2-78 2-116 13-38 10-72 29-94 56Z" fill="url(#navyLeft)"/>
+      <nav id="navLinks" class="nav-links" aria-label="Main navigation">
+        <a href="#home" aria-current="page">Home</a>
+        <a href="#programmes">Programmes</a>
+        <a href="#about">About us</a>
+        <a href="#learning">How it works</a>
+        <a href="#faq">FAQs</a>
+        <a class="nav-cta" href="#contact">Enquire now ↗</a>
+      </nav>
+    </div>
+  </header>
 
-    <path d="M92 86c54-26 115-30 172-16 24 6 47 17 67 32C230 122 184 150 160 195c-23 44-26 88-20 133h-74c-6-38-3-83 18-123 12-22 31-40 53-56-20-2-42 0-66 7-34 11-60 29-79 51-17 19-29 41-38 66-13 36-12 72 1 106l-35 14c-17-42-21-89-8-130 12-38 31-71 59-97 17-16 38-29 61-37Z" fill="url(#tealGlow)" opacity="0.96"/>
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Practical online learning</span>
+          <h1>Learn practical skills.<br><span class="accent">Build real proof.</span></h1>
+          <p>Build confidence in digital work with guided training, hands-on assignments, and portfolio-ready projects. Learn practical skills you can demonstrate, not just course content you can forget.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#programmes">Explore programmes <span aria-hidden="true">→</span></a>
+            <a class="btn secondary" href="#contact">Talk to the academy</a>
+          </div>
+          <p class="hero-note">Online learning for aspiring digital professionals, career changers, freelancers, and business owners.</p>
+        </div>
 
-    <path d="M195 129h80v238h-80z" fill="#123b6b" opacity="0.96"/>
-    <path d="M117 129h78v238h-78z" fill="#0c315d" opacity="0.92"/>
-    <path d="M141 122h54v237h-54z" fill="#f0c081" opacity="0.88"/>
-    <path d="M216 129h74v238h-74z" fill="#edb766" opacity="0.94"/>
+        <div class="hero-visual" aria-label="Academy overview">
+          <div class="visual-card">
+            <img class="logo-large" src="images/bravelyn-exact-logo.svg" alt="Bravelyn Digital Academy" />
+            <span class="mini-label">Skills that become evidence</span>
+            <h3>Learn it. Practise it. Show it.</h3>
+            <div class="skill-pills">
+              <span>Digital admin</span>
+              <span>AI & websites</span>
+              <span>Career branding</span>
+              <span>Creative media</span>
+              <span>Online growth</span>
+            </div>
+          </div>
+          <div class="floating-note">Your skills. Your work. Your proof.</div>
+        </div>
+      </div>
+    </section>
 
-    <path d="M103 228c-23 10-41 30-54 57-14 29-20 64-14 97l-44 9c-15-42-11-91 12-132 26-46 74-71 130-73l-31 42Z" fill="#0c2f5d" opacity="0.9"/>
+    <div class="trust-strip">
+      <div class="container trust-grid">
+        <div><strong>Hands-on assignments</strong><span>Practise with purposeful tasks</span></div>
+        <div><strong>Guided learning</strong><span>Build skills with feedback</span></div>
+        <div><strong>Portfolio-focused</strong><span>Create work you can demonstrate</span></div>
+      </div>
+    </div>
 
-    <path d="M84 77c34-27 74-43 120-46-63 35-93 80-101 150-8 73 9 120 48 158 17 16 38 29 62 40-45-11-85-33-114-63-32-34-48-79-48-129 0-38 13-74 33-110Z" fill="url(#tealGlow)" opacity="0.4"/>
+    <footer>
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <img src="images/bravelyn-exact-logo.svg" alt="Bravelyn Digital Academy logo" />
+            <p>Practical digital, creative and AI-enabled learning designed to help learners build skills they can practise and demonstrate.</p>
+          </div>
 
-    <path d="M109 172c58-68 144-75 233-52-82 20-140 64-166 130-20 50-27 103-22 171h-89c-1-43 4-90 22-140 17-46 38-81 72-109Z" fill="#fff" opacity="0.12"/>
+          <div class="footer-links">
+            <div>
+              <h3>Explore</h3>
+              <a href="#programmes">Programmes</a>
+              <a href="#about">About us</a>
+              <a href="#learning">How it works</a>
+              <a href="#faq">FAQs</a>
+            </div>
+            <div>
+              <h3>Get in touch</h3>
+              <a href="mailto:wisdomkwametorku123@gmail.com">Email us</a>
+              <a href="tel:+233541235232">Call us</a>
+              <a href="https://wa.me/233541235232" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a href="#contact">Make an enquiry</a>
+            </div>
+          </div>
+        </div>
 
-    <path d="M181 111h19v22h-19z" fill="#ffffff" opacity="0.92"/>
-    <circle cx="172" cy="89" r="12" fill="url(#goldWarm)"/>
-    <circle cx="172" cy="89" r="4" fill="#ffffff" opacity="0.8"/>
+        <div class="footer-bottom"><span>© <span id="year"></span> Bravelyn Digital Academy. All rights reserved.</span><span>Learn Practical Skills. Build Real Proof.</span></div>
+      </div>
+    </footer>
 
-    <path d="M372 315c42 0 66-24 66-58 0-25-15-44-38-55 26-12 39-30 39-52 0-41-33-69-83-69h-104v234h120Zm-117-36V160h101c24 0 40 14 40 36s-15 35-38 35h-103Zm0 121v-48h105c27 0 46 13 46 35 0 24-19 38-48 38h-103Z" fill="#0d2d52" opacity="0.9"/>
-  </g>
+    <script>
+      const year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
 
-  <g transform="translate(450,94)">
-    <text x="0" y="165" font-family="Segoe UI, Arial, sans-serif" font-size="196" font-weight="900" letter-spacing="-10" fill="#0c2e5c">BRAVELYN</text>
-    <text x="20" y="298" font-family="Segoe UI, Arial, sans-serif" font-size="96" font-weight="800" letter-spacing="8" fill="#0c2e5c">DIGITAL ACADEMY</text>
-    <line x1="8" y1="333" x2="730" y2="333" stroke="#14b4d8" stroke-width="11" stroke-linecap="round"/>
-    <text x="315" y="394" font-family="Segoe UI, Arial, sans-serif" font-size="35" font-weight="700" letter-spacing="1.5" fill="#0c2e5c" opacity="0.86">Learn Practical Skills. Build Real Proof.</text>
-    <line x1="248" y1="377" x2="286" y2="377" stroke="#0c2e5c" stroke-width="5" stroke-linecap="round" opacity="0.72"/>
-    <line x1="1035" y1="377" x2="1097" y2="377" stroke="#0c2e5c" stroke-width="5" stroke-linecap="round" opacity="0.72"/>
-  </g>
-</svg>
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function () {
+          const open = navLinks.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', String(open));
+          menuToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+          menuToggle.textContent = open ? '×' : '☰';
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Open navigation menu');
+            menuToggle.textContent = '☰';
+          });
+        });
+      }
+    </script>
+</body>
+</html>
