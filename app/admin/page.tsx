@@ -1,56 +1,193 @@
-export const programmes = [
-  {
-    name: 'Virtual Administrative Assistant',
-    description: 'Develop practical administrative support skills, including client communication, scheduling and task tracking.',
-    price: 50,
-    icon: '▤',
-    outcome: 'A sample admin portfolio and workflow checklist.',
-    featured: true,
-    category: 'career'
-  },
-  {
-    name: 'AI Automation, Prompt Writing & Website Building',
-    description: 'Learn to structure prompts, explore automation and build simple digital experiences.',
-    price: 50,
-    icon: '✳',
-    outcome: 'A demo workflow or simple website.',
-    featured: false,
-    category: 'technology'
-  },
-  {
-    name: 'Graphic Design',
-    description: 'Practise layout, typography, colour and brand consistency for digital and social content.',
-    price: 50,
-    icon: '▧',
-    outcome: 'A mini brand kit and campaign designs.',
-    featured: false,
-    category: 'creative'
-  },
-  {
-    name: 'Social Media Management & SEO',
-    description: 'Explore content planning, basic SEO and performance reporting for online visibility.',
-    price: 50,
-    icon: '◎',
-    outcome: 'A 30-day content calendar and SEO-focused sample page.',
-    featured: false,
-    category: 'creative'
-  },
-  {
-    name: 'Content Writing, Content Creation & Copywriting',
-    description: 'Build writing skills for brands, audiences, campaigns and persuasive message design.',
-    price: 50,
-    icon: '✎',
-    outcome: 'A content pack for a sample brand.',
-    featured: false,
-    category: 'creative'
-  },
-  {
-    name: 'Video Editing',
-    description: 'Develop storytelling, pacing, captions and short-form editing skills for digital engagement.',
-    price: 50,
-    icon: '▶',
-    outcome: 'A set of short vertical videos and a showreel.',
-    featured: false,
-    category: 'creative'
+'use client';
+
+import { useMemo, useState } from 'react';
+import { programmes } from '@/data/programmes';
+
+export default function AdminPage() {
+  const [list, setList] = useState(programmes);
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('creative');
+  const [price, setPrice] = useState('50');
+  const [description, setDescription] = useState('');
+  const [outcome, setOutcome] = useState('');
+
+  const stats = useMemo(
+    () => ({
+      total: list.length,
+      revenue: list.reduce((sum, item) => sum + item.price, 0),
+      featured: list.filter((item) => item.featured).length
+    }),
+    [list]
+  );
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!title.trim()) return;
+
+    setList((current) => [
+      ...current,
+      {
+        name: title.trim(),
+        description: description.trim() || 'New programme added to the academy.',
+        price: Number(price) || 50,
+        icon: '✦',
+        outcome: outcome.trim() || 'Portfolio-ready final project.',
+        featured: false,
+        category
+      }
+    ]);
+
+    setTitle('');
+    setCategory('creative');
+    setPrice('50');
+    setDescription('');
+    setOutcome('');
   }
-];
+
+  return (
+    <main className="admin-page">
+      <div className="container admin-shell">
+        <aside className="admin-sidebar">
+          <div className="admin-brand">Bravelyn Admin</div>
+          <nav>
+            <a href="/">Public site</a>
+            <a href="/admin" className="active">
+              Programmes
+            </a>
+          </nav>
+        </aside>
+
+        <section className="admin-content">
+          <div className="admin-header">
+            <div>
+              <span className="eyebrow">Academy dashboard</span>
+              <h1>Programme overview</h1>
+            </div>
+            <a href="/" className="btn btn-primary">
+              View site
+            </a>
+          </div>
+
+          <div className="admin-stats">
+            <div className="stat-box">
+              <strong>{stats.total}</strong>
+              <span>Programmes</span>
+            </div>
+            <div className="stat-box">
+              <strong>GH₵{stats.revenue}</strong>
+              <span>Potential revenue</span>
+            </div>
+            <div className="stat-box">
+              <strong>{stats.featured}</strong>
+              <span>Featured courses</span>
+            </div>
+          </div>
+
+          <div className="admin-grid">
+            <form className="admin-form" onSubmit={handleSubmit}>
+              <h2>Add new course</h2>
+
+              <label>
+                Course title
+                <input
+                  value={title}
+                  onChange={(event) => setTitle(event.target.value)}
+                  placeholder="Course title"
+                />
+              </label>
+
+              <label>
+                Category
+                <select value={category} onChange={(event) => setCategory(event.target.value)}>
+                  <option value="career">Career & admin</option>
+                  <option value="technology">AI & technology</option>
+                  <option value="creative">Creative & marketing</option>
+                </select>
+              </label>
+
+              <label>
+                Price (GHS)
+                <input
+                  value={price}
+                  onChange={(event) => setPrice(event.target.value)}
+                  type="number"
+                  min="0"
+                />
+              </label>
+
+              <label>
+                Description
+                <textarea
+                  value={description}
+                  onChange={(event) => setDescription(event.target.value)}
+                  placeholder="Short summary..."
+                />
+              </label>
+
+              <label>
+                Outcome
+                <textarea
+                  value={outcome}
+                  onChange={(event) => setOutcome(event.target.value)}
+                  placeholder="What learners will produce..."
+                />
+              </label>
+
+              <button type="submit" className="btn btn-primary">
+                Add programme
+              </button>
+            </form>
+
+            <div className="course-table-wrap">
+              <h2>Current programmes</h2>
+              <table className="course-table">
+                <thead>
+                  <tr>
+                    <th>Course</th>
+                    <th>Price</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {list.map((course) => (
+                    <tr key={`${course.name}-${course.price}`}>
+                      <td>{course.name}</td>
+                      <td>GH₵{course.price}</td>
+                      <td>{course.category}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
