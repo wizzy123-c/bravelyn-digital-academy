@@ -1,0 +1,17 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Bravelyn Digital Academy logo primary</title>
+  <desc id="desc">Bravelyn Digital Academy wordmark with teal, navy, and amber shapes.</desc>
+  <rect width="1200" height="360" rx="22" fill="#F7FAFC"/>
+  <g transform="translate(60,52)">
+    <rect x="0" y="0" width="220" height="220" rx="42" fill="#142B4A"/>
+    <path d="M56 54 L105 54 L105 168 L56 168 Z" fill="#167D9A"/>
+    <path d="M120 54 L170 54 L170 168 L120 168 Z" fill="#E7A64B"/>
+    <path d="M88 88 L132 88 L132 134 L88 134 Z" fill="#F7FAFC"/>
+    <circle cx="110" cy="46" r="18" fill="#167D9A"/>
+  </g>
+  <g transform="translate(320,88)">
+    <text x="0" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="800" fill="#142B4A">Bravelyn</text>
+    <text x="0" y="155" font-family="Segoe UI, Arial, sans-serif" font-size="52" font-weight="700" fill="#167D9A">Digital Academy</text>
+    <rect x="4" y="186" width="470" height="8" rx="4" fill="#E7A64B"/>
+  </g>
+</svg>

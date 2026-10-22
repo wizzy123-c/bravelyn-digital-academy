@@ -1,0 +1,18 @@
+<svg width="900" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Bravelyn Digital Academy logo</title>
+  <desc id="desc">Bravelyn Digital Academy brand icon and text.</desc>
+  <rect width="900" height="360" rx="30" fill="#FFFFFF"/>
+  <g transform="translate(50,40)">
+    <rect x="0" y="0" width="230" height="230" rx="46" fill="#142B4A"/>
+    <path d="M60 62 H118 V183 H60 Z" fill="#167D9A"/>
+    <path d="M120 62 H181 V183 H120 Z" fill="#E7A64B"/>
+    <path d="M90 100 H104 V145 H90 Z" fill="#F5F8FB"/>
+    <path d="M120 100 H154 V145 H120 Z" fill="#F5F8FB"/>
+    <circle cx="117" cy="52" r="18" fill="#167D9A"/>
+  </g>
+  <g transform="translate(310,76)">
+    <text x="0" y="82" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="800" fill="#142B4A">Bravelyn</text>
+    <text x="0" y="150" font-family="Segoe UI, Arial, sans-serif" font-size="46" font-weight="700" fill="#167D9A">Digital Academy</text>
+    <rect x="0" y="185" width="430" height="8" rx="4" fill="#E7A64B"/>
+  </g>
+</svg>
