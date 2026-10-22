@@ -1,32 +1,30 @@
-<svg width="1600" height="540" viewBox="0 0 1600 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<svg width="1700" height="520" viewBox="0 0 1700 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Bravelyn Digital Academy logo</title>
-  <desc id="desc">Bravelyn Digital Academy wordmark and icon in navy, teal, and amber.</desc>
-
+  <desc id="desc">Stylized Bravelyn Digital Academy logo with custom wordmark.</desc>
   <defs>
-    <linearGradient id="tealFade" x1="0%" x2="100%" y1="0%" y2="0%">
-      <stop offset="0%" stop-color="#0d9bb8"/>
-      <stop offset="100%" stop-color="#40d5d4"/>
+    <linearGradient id="navyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c2d4f"/>
+      <stop offset="100%" stop-color="#123c6b"/>
     </linearGradient>
-    <linearGradient id="nightBlue" x1="0%" x2="100%" y1="0%" y2="100%">
-      <stop offset="0%" stop-color="#0d2448"/>
-      <stop offset="100%" stop-color="#123d72"/>
+    <linearGradient id="tealGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#13b3d6"/>
+      <stop offset="100%" stop-color="#73e6d8"/>
     </linearGradient>
   </defs>
 
-  <g transform="translate(28,40)">
-    <path d="M210 20C80 70 18 154 18 268C18 362 82 454 204 454H266C303 454 332 425 332 388C332 351 303 322 266 322H200C129 322 88 277 88 220C88 153 131 114 196 114H254C301 114 335 149 335 194V280H390V194C390 122 331 62 250 42L210 20Z" fill="url(#nightBlue)"/>
-    <path d="M83 76C118 52 156 41 199 41C143 96 120 147 120 206C120 271 158 319 219 319H290C301 319 310 327 310 338C310 349 301 358 290 358H205C90 358 18 292 18 195C18 155 33 117 64 85L83 76Z" fill="url(#tealFade)" opacity="0.92"/>
-    <path d="M129 148L176 148L176 323L129 323Z" fill="#0d2448" opacity="0.92"/>
-    <path d="M186 148H243V323H186Z" fill="#f4b94d" opacity="0.9"/>
-    <path d="M153 122H184V157H153Z" fill="#ffffff" opacity="0.85"/>
-    <circle cx="168" cy="95" r="18" fill="#f4b94d"/>
-    <path d="M206 144C242 122 275 116 317 122C278 140 250 167 238 209C232 230 230 252 233 279H188C184 248 187 213 206 144Z" fill="#ffffff" opacity="0.15"/>
+  <g transform="translate(18,34)">
+    <path d="M210 16C97 50 29 132 29 235c0 122 81 219 215 250h67c57 0 96-39 96-87 0-48-39-86-96-86H200c-63 0-98-33-98-90 0-59 39-93 98-93h127c58 0 97-41 97-92 0-51-39-93-97-93H220C123 0 60 31 24 79l186-63Z" fill="url(#navyGradient)"/>
+    <path d="M99 91c44-33 104-47 169-47C155 98 113 149 113 224c0 72 44 125 118 125h108c14 0 25 9 25 22s-11 22-25 22H231C111 393 43 322 43 229c0-59 24-103 56-136Z" fill="url(#tealGradient)" opacity="0.98"/>
+    <path d="M140 145h68v221h-68z" fill="#0b2441" opacity="0.95"/>
+    <path d="M210 145h66v221h-66z" fill="#efb564" opacity="0.95"/>
+    <circle cx="174" cy="92" r="18" fill="#efb564"/>
+    <path d="M195 108c34-28 74-39 122-41-41 18-70 48-87 90-12 30-15 61-11 100h-56c-3-35 0-76 32-149Z" fill="#ffffff" opacity="0.16"/>
   </g>
 
-  <g transform="translate(430,120)">
-    <text x="0" y="150" font-family="Segoe UI, Arial, sans-serif" font-size="192" font-weight="900" letter-spacing="-10" fill="#0d2448">BRAVELYN</text>
-    <text x="12" y="280" font-family="Segoe UI, Arial, sans-serif" font-size="90" font-weight="800" letter-spacing="8" fill="#0d2448">DIGITAL ACADEMY</text>
-    <line x1="12" y1="312" x2="670" y2="312" stroke="#0d9bb8" stroke-width="12" stroke-linecap="round"/>
-    <text x="275" y="370" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="1.5" fill="#0d2448" opacity="0.8">Learn Practical Skills. Build Real Proof.</text>
+  <g transform="translate(448,114)">
+    <text x="0" y="140" font-family="Segoe UI, Arial, sans-serif" font-size="198" font-weight="900" letter-spacing="-11" fill="#0d294d">BRAVELYN</text>
+    <text x="18" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="90" font-weight="800" letter-spacing="7" fill="#0d294d">DIGITAL ACADEMY</text>
+    <line x1="20" y1="310" x2="715" y2="310" stroke="#15a6c9" stroke-width="12" stroke-linecap="round"/>
+    <text x="333" y="375" font-family="Segoe UI, Arial, sans-serif" font-size="35" font-weight="700" letter-spacing="1.5" fill="#0d294d" opacity="0.82">Learn Practical Skills. Build Real Proof.</text>
   </g>
 </svg>
