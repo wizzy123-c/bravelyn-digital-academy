@@ -1,30 +1,53 @@
-<svg width="1700" height="520" viewBox="0 0 1700 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<svg width="1800" height="540" viewBox="0 0 1800 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Bravelyn Digital Academy logo</title>
-  <desc id="desc">Stylized Bravelyn Digital Academy logo with custom wordmark.</desc>
+  <desc id="desc">The official Bravelyn Digital Academy logo.</desc>
+
   <defs>
-    <linearGradient id="navyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0c2d4f"/>
-      <stop offset="100%" stop-color="#123c6b"/>
+    <linearGradient id="navyLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c2f5d"/>
+      <stop offset="100%" stop-color="#123d72"/>
     </linearGradient>
-    <linearGradient id="tealGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#13b3d6"/>
-      <stop offset="100%" stop-color="#73e6d8"/>
+    <linearGradient id="tealGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#14b4d8"/>
+      <stop offset="100%" stop-color="#7be7dc"/>
+    </linearGradient>
+    <linearGradient id="goldWarm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5c067"/>
+      <stop offset="100%" stop-color="#de8c2b"/>
     </linearGradient>
   </defs>
 
-  <g transform="translate(18,34)">
-    <path d="M210 16C97 50 29 132 29 235c0 122 81 219 215 250h67c57 0 96-39 96-87 0-48-39-86-96-86H200c-63 0-98-33-98-90 0-59 39-93 98-93h127c58 0 97-41 97-92 0-51-39-93-97-93H220C123 0 60 31 24 79l186-63Z" fill="url(#navyGradient)"/>
-    <path d="M99 91c44-33 104-47 169-47C155 98 113 149 113 224c0 72 44 125 118 125h108c14 0 25 9 25 22s-11 22-25 22H231C111 393 43 322 43 229c0-59 24-103 56-136Z" fill="url(#tealGradient)" opacity="0.98"/>
-    <path d="M140 145h68v221h-68z" fill="#0b2441" opacity="0.95"/>
-    <path d="M210 145h66v221h-66z" fill="#efb564" opacity="0.95"/>
-    <circle cx="174" cy="92" r="18" fill="#efb564"/>
-    <path d="M195 108c34-28 74-39 122-41-41 18-70 48-87 90-12 30-15 61-11 100h-56c-3-35 0-76 32-149Z" fill="#ffffff" opacity="0.16"/>
+  <g transform="translate(18,14)">
+    <path d="M126 28C80 47 38 79 18 120c-19 39-17 87 8 123 17 25 43 42 72 52 1 0 0 0 0 0-26-18-47-43-61-74-15-34-12-72 9-105 28-46 98-67 150-39 21 11 39 30 51 52v-42c-13-23-34-42-63-54-20-9-38-14-66-13Z" fill="#0d2d52" opacity="0.94"/>
+
+    <path d="M182 20C73 51 20 137 20 244c0 84 48 153 135 190 38 16 75 24 111 24 34 0 59-13 59-38 0-21-15-36-35-42l-9-3c-42-12-81-27-118-58-38-32-52-63-52-109 0-58 31-103 79-125 31-14 69-19 113-18 18 0 35 2 52 6l14 3v-28c-19-6-38-10-58-11-38-2-78 2-116 13-38 10-72 29-94 56Z" fill="url(#navyLeft)"/>
+
+    <path d="M92 86c54-26 115-30 172-16 24 6 47 17 67 32C230 122 184 150 160 195c-23 44-26 88-20 133h-74c-6-38-3-83 18-123 12-22 31-40 53-56-20-2-42 0-66 7-34 11-60 29-79 51-17 19-29 41-38 66-13 36-12 72 1 106l-35 14c-17-42-21-89-8-130 12-38 31-71 59-97 17-16 38-29 61-37Z" fill="url(#tealGlow)" opacity="0.96"/>
+
+    <path d="M195 129h80v238h-80z" fill="#123b6b" opacity="0.96"/>
+    <path d="M117 129h78v238h-78z" fill="#0c315d" opacity="0.92"/>
+    <path d="M141 122h54v237h-54z" fill="#f0c081" opacity="0.88"/>
+    <path d="M216 129h74v238h-74z" fill="#edb766" opacity="0.94"/>
+
+    <path d="M103 228c-23 10-41 30-54 57-14 29-20 64-14 97l-44 9c-15-42-11-91 12-132 26-46 74-71 130-73l-31 42Z" fill="#0c2f5d" opacity="0.9"/>
+
+    <path d="M84 77c34-27 74-43 120-46-63 35-93 80-101 150-8 73 9 120 48 158 17 16 38 29 62 40-45-11-85-33-114-63-32-34-48-79-48-129 0-38 13-74 33-110Z" fill="url(#tealGlow)" opacity="0.4"/>
+
+    <path d="M109 172c58-68 144-75 233-52-82 20-140 64-166 130-20 50-27 103-22 171h-89c-1-43 4-90 22-140 17-46 38-81 72-109Z" fill="#fff" opacity="0.12"/>
+
+    <path d="M181 111h19v22h-19z" fill="#ffffff" opacity="0.92"/>
+    <circle cx="172" cy="89" r="12" fill="url(#goldWarm)"/>
+    <circle cx="172" cy="89" r="4" fill="#ffffff" opacity="0.8"/>
+
+    <path d="M372 315c42 0 66-24 66-58 0-25-15-44-38-55 26-12 39-30 39-52 0-41-33-69-83-69h-104v234h120Zm-117-36V160h101c24 0 40 14 40 36s-15 35-38 35h-103Zm0 121v-48h105c27 0 46 13 46 35 0 24-19 38-48 38h-103Z" fill="#0d2d52" opacity="0.9"/>
   </g>
 
-  <g transform="translate(448,114)">
-    <text x="0" y="140" font-family="Segoe UI, Arial, sans-serif" font-size="198" font-weight="900" letter-spacing="-11" fill="#0d294d">BRAVELYN</text>
-    <text x="18" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="90" font-weight="800" letter-spacing="7" fill="#0d294d">DIGITAL ACADEMY</text>
-    <line x1="20" y1="310" x2="715" y2="310" stroke="#15a6c9" stroke-width="12" stroke-linecap="round"/>
-    <text x="333" y="375" font-family="Segoe UI, Arial, sans-serif" font-size="35" font-weight="700" letter-spacing="1.5" fill="#0d294d" opacity="0.82">Learn Practical Skills. Build Real Proof.</text>
+  <g transform="translate(450,94)">
+    <text x="0" y="165" font-family="Segoe UI, Arial, sans-serif" font-size="196" font-weight="900" letter-spacing="-10" fill="#0c2e5c">BRAVELYN</text>
+    <text x="20" y="298" font-family="Segoe UI, Arial, sans-serif" font-size="96" font-weight="800" letter-spacing="8" fill="#0c2e5c">DIGITAL ACADEMY</text>
+    <line x1="8" y1="333" x2="730" y2="333" stroke="#14b4d8" stroke-width="11" stroke-linecap="round"/>
+    <text x="315" y="394" font-family="Segoe UI, Arial, sans-serif" font-size="35" font-weight="700" letter-spacing="1.5" fill="#0c2e5c" opacity="0.86">Learn Practical Skills. Build Real Proof.</text>
+    <line x1="248" y1="377" x2="286" y2="377" stroke="#0c2e5c" stroke-width="5" stroke-linecap="round" opacity="0.72"/>
+    <line x1="1035" y1="377" x2="1097" y2="377" stroke="#0c2e5c" stroke-width="5" stroke-linecap="round" opacity="0.72"/>
   </g>
 </svg>
