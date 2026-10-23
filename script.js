@@ -5,7 +5,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -17,6 +18,13 @@ const firebaseConfig = {
   appId: "1:502770426439:web:c132b2a93a8d52d6fc8762",
   measurementId: "G-KNCSDMZSNQ"
 };
+
+const safeHostnames = ['localhost', '127.0.0.1'];
+const isSecureContext = window.location.protocol !== 'file:' && (safeHostnames.includes(window.location.hostname) || window.location.hostname.includes('.'));
+
+if (!isSecureContext) {
+  console.warn('Auth should be tested from a browser served via localhost or a real domain, not from a file:// URL.');
+}
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
@@ -40,6 +48,12 @@ const redirectAfterAuth = () => {
   const currentPath = window.location.pathname.split('/').pop();
   if (currentPath === 'signin.html' || currentPath === 'signup.html') {
     window.location.href = 'index.html';
+  }
+};
+
+const showLocalServerWarning = () => {
+  if (window.location.protocol === 'file:') {
+    alert('Please run this app from a local web server, for example:\n\npython -m http.server 8000\n\nThen open http://localhost:8000');
   }
 };
 
@@ -83,6 +97,11 @@ const googleButtons = document.querySelectorAll('[data-google-auth]');
 
 googleButtons.forEach((button) => {
   button.addEventListener('click', async () => {
+    if (window.location.protocol === 'file:') {
+      showLocalServerWarning();
+      return;
+    }
+
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
@@ -106,6 +125,11 @@ if (signinForm) {
     event.preventDefault();
     const email = document.getElementById('signin-email').value.trim();
     const password = document.getElementById('signin-password').value.trim();
+
+    if (window.location.protocol === 'file:') {
+      showLocalServerWarning();
+      return;
+    }
 
     if (!email || !password) {
       alert('Please enter your email and password.');
@@ -136,6 +160,11 @@ if (signupForm) {
     const email = document.getElementById('signup-email').value.trim();
     const password = document.getElementById('signup-password').value.trim();
 
+    if (window.location.protocol === 'file:') {
+      showLocalServerWarning();
+      return;
+    }
+
     if (!name || !email || !password) {
       alert('Please complete all sign up fields.');
       return;
@@ -156,6 +185,20 @@ if (signupForm) {
     }
   });
 }
+
+onAuthStateChanged(auth, (user) => {
+  const userBadge = document.getElementById('userBadge');
+  if (userBadge) {
+    if (user?.email) {
+      userBadge.textContent = user.displayName || user.email.split('@')[0];
+    } else {
+      const localUser = getLocalUser();
+      if (localUser?.email) {
+        userBadge.textContent = localUser.name || localUser.email.split('@')[0];
+      }
+    }
+  }
+});
 
 const form = document.getElementById('enquiryForm');
 const formStatus = document.getElementById('formStatus');
@@ -214,11 +257,3 @@ if (backTop) {
 
 const yearNode = document.getElementById('year');
 if (yearNode) yearNode.textContent = new Date().getFullYear();
-
-const userBadge = document.getElementById('userBadge');
-if (userBadge) {
-  const user = getLocalUser();
-  if (user && user.email) {
-    userBadge.textContent = user.name || user.email.split('@')[0];
-  }
-}
