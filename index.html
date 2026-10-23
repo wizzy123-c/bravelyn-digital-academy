@@ -9,16 +9,50 @@
   <meta property="og:title" content="Bravelyn Digital Academy | Learn Practical Skills. Build Real Proof." />
   <meta property="og:description" content="Learn practical digital, creative and AI-enabled skills through guided training, assignments and portfolio-ready projects." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="images/bravelyn-digital-academy-original-logo-u.svg" />
+  <meta property="og:image" content="images/bravelyn-digital-academy-logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <title>Bravelyn Digital Academy | Learn Practical Skills. Build Real Proof.</title>
   <style>
-    :root{ --navy:#142b4a; --navy-2:#1c3257; --teal:#167d9a; --teal-2:#0d5d72; --amber:#e7a64b; --amber-2:#f0b65f; --ink:#1f2d3d; --muted:#5e6f85; --paper:#ffffff; --soft:#f4f7fa; --line:#dde7ef; --success:#1b8f5a; --shadow:0 18px 55px rgba(20,43,74,0.12); --radius:22px; --container:1160px; }
-    *{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:90px} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased} img{max-width:100%;display:block} a{color:inherit;text-decoration:none} button,input,select,textarea{font:inherit} button,a{-webkit-tap-highlight-color:transparent} h1,h2,h3,h4,p{margin-top:0}
-    .container{width:min(var(--container),calc(100% - 40px));margin-inline:auto}.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.skip-link{position:absolute;left:-9999px;top:0;background:#fff;padding:10px;z-index:999;border-radius:10px}.skip-link:focus{left:12px;top:12px}
+    :root{
+      --navy:#142b4a; --navy-2:#1c3257; --teal:#167d9a; --teal-2:#0d5d72;
+      --amber:#e7a64b; --amber-2:#f0b65f; --ink:#1f2d3d; --muted:#5e6f85;
+      --paper:#ffffff; --soft:#f4f7fa; --line:#dde7ef; --success:#1b8f5a;
+      --shadow:0 18px 55px rgba(20,43,74,0.12); --radius:22px; --container:1160px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block} a{color:inherit;text-decoration:none} button,input,select,textarea{font:inherit} button,a{-webkit-tap-highlight-color:transparent} h1,h2,h3,h4,p{margin-top:0}
+    .container{width:min(var(--container),calc(100% - 40px));margin-inline:auto}
+    .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+    .skip-link{position:absolute;left:-9999px;top:0;background:#fff;padding:10px;z-index:999;border-radius:10px}.skip-link:focus{left:12px;top:12px}
     header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(221,231,239,0.9)}
-    .nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand img{width:245px;max-height:64px;object-fit:contain;border-radius:12px;display:block}.nav-links{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0}.nav-links a{text-decoration:none;font-size:0.92rem;font-weight:700;color:var(--navy);transition:color .2s ease}.nav-links a:hover,.nav-links a:focus-visible{color:var(--teal)}.nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;border-radius:999px;background:var(--teal);color:#fff!important;text-decoration:none;font-weight:800;letter-spacing:-0.02em;transition:all .2s ease;box-shadow:0 8px 22px rgba(22,125,154,0.2)}.nav-cta:hover,.btn:hover,.nav-cta:focus-visible,.btn:focus-visible{background:var(--teal-2);transform:translateY(-1px)}.btn.secondary{background:transparent;color:var(--navy)!important;border:1px solid #bfd0df;box-shadow:none}.btn.secondary:hover,.btn.secondary:focus-visible{background:var(--soft);color:var(--navy)!important}.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--navy)!important;box-shadow:none}.btn.ghost:hover,.btn.ghost:focus-visible{background:var(--soft)}.menu-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;color:var(--navy);font-size:1.2rem;cursor:pointer}
-    .hero{overflow:hidden;position:relative;padding:92px 0 84px;background:radial-gradient(ellipse at 90% 10%, rgba(22,125,154,.12), transparent 33%),linear-gradient(135deg,#f7f9fb 0%,#fff 62%,#f3f8fb 100%)}.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 13px;border-radius:999px;background:#e5f3f6;color:#126b83;font-size:0.8rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase}.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber);display:block}h1{font-size:clamp(2.7rem,5vw,4.7rem);line-height:1.04;letter-spacing:-0.055em;color:var(--navy);margin:23px 0}.accent{color:var(--teal)}.hero-copy p{font-size:1.12rem;color:var(--muted);max-width:620px;margin:0}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 22px}.hero-note{font-size:0.88rem;color:#738196;margin:0}.hero-visual{position:relative;padding:24px}.visual-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:30px;padding:28px;box-shadow:var(--shadow);transform:rotate(1deg)}.logo-large{width:100%;max-width:410px;margin:6px auto 24px;display:block}.mini-label{display:block;font-size:0.76rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal)}.visual-card h3{font-size:1.45rem;color:var(--navy);margin:8px 0 15px;line-height:1.35}.skill-pills{display:flex;flex-wrap:wrap;gap:8px}.skill-pills span{background:var(--soft);padding:7px 10px;border-radius:9px;font-size:0.8rem;font-weight:700;color:var(--ink)}.floating-note{position:absolute;right:-2px;bottom:0;background:var(--navy);color:#fff;padding:14px 18px;border-radius:16px;box-shadow:var(--shadow);font-weight:700;font-size:0.88rem}
+    .nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:inline-flex;align-items:center;justify-content:center}
+    .brand-logo{width:clamp(180px,20vw,245px);height:auto;display:block;object-fit:contain;border-radius:16px}
+    .nav-links{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0}
+    .nav-links a{text-decoration:none;font-size:0.92rem;font-weight:700;color:var(--navy);transition:color .2s ease}
+    .nav-links a:hover,.nav-links a:focus-visible{color:var(--teal)}
+    .nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;border-radius:999px;background:var(--teal);color:#fff!important;text-decoration:none;font-weight:800;letter-spacing:-0.02em;transition:all .2s ease;box-shadow:0 8px 22px rgba(22,125,154,0.2)}
+    .nav-cta:hover,.btn:hover,.nav-cta:focus-visible,.btn:focus-visible{background:var(--teal-2);transform:translateY(-1px)}
+    .btn.secondary{background:transparent;color:var(--navy)!important;border:1px solid #bfd0df;box-shadow:none}.btn.secondary:hover,.btn.secondary:focus-visible{background:var(--soft);color:var(--navy)!important}
+    .btn.ghost{background:#fff;border:1px solid var(--line);color:var(--navy)!important;box-shadow:none}.btn.ghost:hover,.btn.ghost:focus-visible{background:var(--soft)}
+    .menu-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;color:var(--navy);font-size:1.2rem;cursor:pointer}
+    .hero{overflow:hidden;position:relative;padding:92px 0 84px;background:radial-gradient(ellipse at 90% 10%, rgba(22,125,154,.12), transparent 33%),linear-gradient(135deg,#f7f9fb 0%,#fff 62%,#f3f8fb 100%)}
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 13px;border-radius:999px;background:#e5f3f6;color:#126b83;font-size:0.8rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber);display:block}
+    h1{font-size:clamp(2.7rem,5vw,4.7rem);line-height:1.04;letter-spacing:-0.055em;color:var(--navy);margin:23px 0}
+    .accent{color:var(--teal)}
+    .hero-copy p{font-size:1.12rem;color:var(--muted);max-width:620px;margin:0}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 22px}
+    .hero-note{font-size:0.88rem;color:#738196;margin:0}
+    .hero-visual{position:relative;padding:24px}
+    .visual-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:30px;padding:22px 22px 18px;box-shadow:var(--shadow);transform:rotate(1deg)}
+    .hero-logo{width:min(100%,440px);height:auto;display:block;margin:0 auto 18px;object-fit:contain}
+    .mini-label{display:block;font-size:0.76rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal)}
+    .visual-card h3{font-size:1.45rem;color:var(--navy);margin:8px 0 15px;line-height:1.35}
+    .skill-pills{display:flex;flex-wrap:wrap;gap:8px}.skill-pills span{background:var(--soft);padding:7px 10px;border-radius:9px;font-size:0.8rem;font-weight:700;color:var(--ink)}
+    .floating-note{position:absolute;right:-2px;bottom:0;background:var(--navy);color:#fff;padding:14px 18px;border-radius:16px;box-shadow:var(--shadow);font-weight:700;font-size:0.88rem}
     .trust-strip{padding:23px 0;background:var(--navy);color:#fff}.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}.trust-grid strong{display:block;font-size:1rem;font-weight:800}.trust-grid span{font-size:0.9rem;color:rgba(255,255,255,0.82)}
     section{padding:84px 0}.section-head{max-width:720px;margin:0 auto 42px;text-align:center}.section-kicker{color:var(--teal);font-size:0.78rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:800}.section-head h2{font-size:clamp(2rem,3vw,2.8rem);line-height:1.12;color:var(--navy);letter-spacing:-0.04em}.section-head p{color:var(--muted);font-size:1rem;margin:0 auto;max-width:660px}
     .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}.stat-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 18px;text-align:center;box-shadow:0 8px 20px rgba(20,43,74,0.04)}.stat-box strong{display:block;font-size:2rem;color:var(--navy)}.stat-box span{color:var(--muted);font-size:0.92rem}
@@ -35,8 +69,8 @@
     .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:45px;align-items:start}.contact-copy h2{font-size:clamp(2rem,3.5vw,2.5rem);line-height:1.12;color:var(--navy);letter-spacing:-0.04em}.contact-copy p{color:var(--muted);margin:0 0 18px}.contact-detail{display:flex;align-items:flex-start;gap:12px;padding:10px 0}.contact-symbol{width:38px;height:38px;border-radius:12px;background:#eaf5f7;color:var(--navy);display:grid;place-items:center;font-weight:800}.contact-detail strong{display:block;color:var(--navy)}.contact-detail a,.contact-detail span{color:var(--muted)}
     .contact-form{background:#fff;border:1px solid var(--line);border-radius:26px;padding:28px;box-shadow:0 10px 28px rgba(20,43,74,0.04)}.contact-form h3{margin:0 0 8px;color:var(--navy)}.contact-form p{color:var(--muted)}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}.field label{font-size:0.82rem;font-weight:800;color:var(--navy);letter-spacing:0.04em;text-transform:uppercase}.field input,.field textarea,.field select{padding:12px 14px;border:1px solid #dfe8f1;border-radius:12px;background:#f9fbfd;color:var(--ink);resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{outline:2px solid rgba(22,125,154,0.15);border-color:var(--teal)}.consent{display:flex;align-items:flex-start;gap:10px;margin:18px 0 0;color:var(--ink);font-size:0.9rem}.consent input{margin-top:3px}.button-row{display:flex;justify-content:flex-start;margin-top:18px}.form-note{font-size:0.8rem;color:var(--muted)}.form-status{margin-top:14px;padding:12px 14px;border-radius:10px;background:#edf7f1;color:#0f7254;font-weight:700;display:none}.form-status.error{display:block;background:#feefef;color:#9d2f2f}.form-status.success{display:block;background:#edf7f1;color:#0f7254}
     footer{background:#0d2038;color:#fff;padding:48px 0 22px}.footer-top{display:flex;justify-content:space-between;gap:40px;padding-bottom:32px}.footer-brand img{width:230px;max-height:75px;object-fit:contain;display:block}.footer-brand p{max-width:420px;color:rgba(255,255,255,0.7)}.footer-links{display:flex;gap:42px}.footer-links h3{font-size:1rem;color:#fff;margin:0 0 12px}.footer-links a{display:block;color:rgba(255,255,255,0.76);padding:4px 0}.footer-bottom{display:flex;justify-content:space-between;gap:18px;align-items:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.72);font-size:0.85rem}.back-top{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border:0;border-radius:50%;background:var(--teal);color:#fff;font-size:1.25rem;box-shadow:var(--shadow);cursor:pointer;display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .2s ease}.back-top.show{opacity:1;pointer-events:auto}
-    @media(max-width:950px){.nav-links{gap:14px}.nav-links a{font-size:0.85rem}.brand img{width:205px}.hero-grid{gap:28px}.course-grid{grid-template-columns:repeat(2,1fr)}.process-grid{grid-template-columns:repeat(2,1fr)}.testimonial-grid{grid-template-columns:repeat(2,1fr)}.split,.contact-grid,.cta-band{grid-template-columns:1fr}.cta-band{display:grid}.footer-top{flex-direction:column}}
-    @media(max-width:760px){.container{width:min(100% - 30px,600px)}.nav{height:72px}.brand img{width:190px;max-height:55px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;left:15px;right:15px;top:72px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow);flex-direction:column;align-items:flex-start}.nav-links.open{display:flex}.hero{padding-top:58px}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{width:100%}.stats-grid,.process-grid,.testimonial-grid,.form-grid,.benefits-list,.value-list{grid-template-columns:1fr}.footer-links{flex-wrap:wrap}.footer-bottom{flex-direction:column;align-items:flex-start}}
+    @media(max-width:950px){.nav-links{gap:14px}.nav-links a{font-size:0.85rem}.brand-logo{width:210px}.hero-grid{gap:28px}.course-grid{grid-template-columns:repeat(2,1fr)}.process-grid{grid-template-columns:repeat(2,1fr)}.testimonial-grid{grid-template-columns:repeat(2,1fr)}.split,.contact-grid,.cta-band{grid-template-columns:1fr}.cta-band{display:grid}.footer-top{flex-direction:column}}
+    @media(max-width:760px){.container{width:min(100% - 30px,600px)}.nav{height:72px}.brand-logo{width:180px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;left:15px;right:15px;top:72px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow);flex-direction:column;align-items:flex-start}.nav-links.open{display:flex}.hero{padding-top:58px}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{width:100%}.stats-grid,.process-grid,.testimonial-grid,.form-grid,.benefits-list,.value-list{grid-template-columns:1fr}.footer-links{flex-wrap:wrap}.footer-bottom{flex-direction:column;align-items:flex-start}}
     @media(max-width:430px){.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{text-align:center}.stats-grid,.process-grid,.testimonial-grid,.form-grid{grid-template-columns:1fr}.mission-panel{padding:24px}.course-grid{grid-template-columns:1fr}}
   </style>
 </head>
@@ -46,7 +80,11 @@
   <header>
     <div class="container nav">
       <a class="brand" href="#home" aria-label="Bravelyn Digital Academy home">
-        <img alt="Bravelyn Digital Academy — Learn Practical Skills. Build Real Proof" src="images/bravelyn-digital-academy-original-logo-u.svg" style="height:auto;max-width:100%;object-fit:contain;border-radius:16px" />
+        <img
+          class="brand-logo"
+          alt="Bravelyn Digital Academy — Learn Practical Skills. Build Real Proof"
+          src="images/bravelyn-digital-academy-logo.png"
+        />
       </a>
 
       <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">☰</button>
@@ -78,7 +116,11 @@
 
         <div class="hero-visual" aria-label="Academy overview">
           <div class="visual-card">
-            <img class="logo-large" src="images/bravelyn-digital-academy-original-logo-u.svg" alt="Bravelyn Digital Academy — Learn Practical Skills. Build Real Proof" />
+            <img
+              class="hero-logo"
+              src="images/bravelyn-digital-academy-logo.png"
+              alt="Bravelyn Digital Academy — Learn Practical Skills. Build Real Proof"
+            />
             <span class="mini-label">Skills that become evidence</span>
             <h3>Learn it. Practise it. Show it.</h3>
             <div class="skill-pills">
@@ -355,7 +397,11 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="images/bravelyn-digital-academy-original-logo-u.svg" alt="Bravelyn Digital Academy logo" style="height:auto;max-width:100%;object-fit:contain" />
+          <img
+            class="footer-logo"
+            src="images/bravelyn-digital-academy-logo.png"
+            alt="Bravelyn Digital Academy logo"
+          />
           <p>Practical digital, creative and AI-enabled learning designed to help learners build skills they can practise and demonstrate.</p>
         </div>
 
