@@ -1,4 +1,122 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCoO9qoyRdUSPXnH9NzPWNTcuMwxlBuXW0",
+  authDomain: "bravelyn-digital-academy.firebaseapp.com",
+  projectId: "bravelyn-digital-academy",
+  storageBucket: "bravelyn-digital-academy.firebasestorage.app",
+  messagingSenderId: "502770426439",
+  appId: "1:502770426439:web:c132b2a93a8d52d6fc8762",
+  measurementId: "G-KNCSDMZSNQ"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: "select_account" });
+
+const safeHostnames = ["localhost", "127.0.0.1"];
+
+const saveLocalUser = (user) => {
+  localStorage.setItem("bravelyn_user", JSON.stringify(user));
+};
+
+const getLocalUser = () => {
+  try {
+    return JSON.parse(localStorage.getItem("bravelyn_user") || "null");
+  } catch (error) {
+    return null;
+  }
+};
+
+const setStatus = (elementId, message, type) => {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  el.textContent = message;
+  el.className = "status";
+  if (type) el.classList.add(type);
+};
+
+const emailValidator = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+const redirectAfterAuth = () => {
+  const currentPath = window.location.pathname.split("/").pop();
+  if (currentPath === "signin.html" || currentPath === "signup.html") {
+    window.location.href = "dashboard.html";
+  }
+};
+
+const updateUserBadge = (user) => {
+  const userBadge = document.getElementById("userBadge");
+  const welcomeName = document.getElementById("welcomeName");
+
+  const localUser = getLocalUser();
+  const profileName = user?.displayName || user?.email || localUser?.name || localUser?.email || "Learner";
+
+  if (userBadge) userBadge.textContent = profileName;
+  if (welcomeName) welcomeName.textContent = profileName.split("@")[0];
+};
+
+const handleAuthState = (user) => {
+  if (user) {
+    const authUser = {
+      name: user.displayName || user.email?.split("@")[0] || "Learner",
+      email: user.email,
+      provider: user.providerData?.[0]?.providerId || "firebase"
+    };
+    saveLocalUser(authUser);
+    updateUserBadge(user);
+  } else {
+    updateUserBadge(null);
+  }
+};
+
+const initReveal = () => {
+  const revealItems = document.querySelectorAll(".reveal");
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+};
+
+const initFaq = () => {
+  document.querySelectorAll(".faq-item").forEach((item) => {
+    const button = item.querySelector(".faq-question");
+    const toggle = item.querySelector(".faq-toggle");
+    button?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("active");
+      document.querySelectorAll(".faq-item").forEach((faq) => {
+        faq.classList.remove("active");
+        const faqToggle = faq.querySelector(".faq-toggle");
+        if (faqToggle) faqToggle.textContent = "+";
+      });
+      if (!isOpen) {
+        item.classList.add("active");
+        if (toggle) toggle.textContent = "−";
+      }
+    });
+  });
+};
+
+const initNav = () => {
   const navToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
 
@@ -16,112 +134,79 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+};
 
-  document.querySelectorAll(".faq-item").forEach((item) => {
-    const button = item.querySelector(".faq-question");
-    const toggle = item.querySelector(".faq-toggle");
-
-    button?.addEventListener("click", () => {
-      const isOpen = item.classList.contains("active");
-
-      document.querySelectorAll(".faq-item").forEach((faq) => {
-        faq.classList.remove("active");
-        const faqToggle = faq.querySelector(".faq-toggle");
-        if (faqToggle) faqToggle.textContent = "+";
-      });
-
-      if (!isOpen) {
-        item.classList.add("active");
-        if (toggle) toggle.textContent = "−";
-      }
-    });
-  });
-
+const initBackToTop = () => {
   const backTop = document.getElementById("backTop");
-  if (backTop) {
-    const toggleBackTop = () => {
-      if (window.scrollY > 500) {
-        backTop.classList.add("show");
-      } else {
-        backTop.classList.remove("show");
-      }
-    };
+  if (!backTop) return;
 
-    window.addEventListener("scroll", toggleBackTop);
-    toggleBackTop();
-
-    backTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-
-  const setStatus = (elementId, message, type) => {
-    const el = document.getElementById(elementId);
-    if (!el) return;
-
-    el.textContent = message;
-    el.className = "status";
-    if (type) el.classList.add(type);
+  const toggleBackTop = () => {
+    if (window.scrollY > 500) backTop.classList.add("show");
+    else backTop.classList.remove("show");
   };
 
+  window.addEventListener("scroll", toggleBackTop);
+  toggleBackTop();
+
+  backTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+};
+
+const initAuthForms = () => {
   const signinForm = document.getElementById("signinForm");
   if (signinForm) {
-    signinForm.addEventListener("submit", (event) => {
+    signinForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-
-      const email = document.getElementById("signin-email").value.trim();
-      const password = document.getElementById("signin-password").value.trim();
+      const email = document.getElementById("signin-email")?.value.trim();
+      const password = document.getElementById("signin-password")?.value.trim();
 
       if (!email || !password) {
         setStatus("signinStatus", "Please enter both email and password.", "error");
         return;
       }
 
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
+      if (!emailValidator(email)) {
         setStatus("signinStatus", "Please enter a valid email address.", "error");
         return;
       }
 
-      const savedUser = JSON.parse(localStorage.getItem("bravelyn_user") || "null");
-      if (savedUser && savedUser.email && savedUser.email.toLowerCase() === email.toLowerCase()) {
-        setStatus("signinStatus", `Welcome back, ${savedUser.name || savedUser.email}!`, "success");
-        setTimeout(() => {
-          window.location.href = "index.html";
-        }, 700);
+      if (window.location.protocol === "file:") {
+        alert("Please run this app from a local web server, for example:\n\npython -m http.server 8000\n\nThen open http://localhost:8000");
         return;
       }
 
-      const user = {
-        name: email.split("@")[0],
-        email,
-        provider: "email"
-      };
-
-      localStorage.setItem("bravelyn_user", JSON.stringify(user));
-      setStatus("signinStatus", "Signed in successfully.", "success");
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 700);
+      try {
+        const result = await signInWithEmailAndPassword(auth, email, password);
+        const user = result.user;
+        saveLocalUser({
+          name: user.displayName || user.email?.split("@")[0] || "Learner",
+          email: user.email,
+          provider: "email"
+        });
+        setStatus("signinStatus", "Signed in successfully.", "success");
+        redirectAfterAuth();
+      } catch (error) {
+        console.error(error);
+        setStatus("signinStatus", "Unable to sign in. Please check your details and try again.", "error");
+      }
     });
   }
 
   const signupForm = document.getElementById("signupForm");
   if (signupForm) {
-    signupForm.addEventListener("submit", (event) => {
+    signupForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-
-      const name = document.getElementById("signup-name").value.trim();
-      const email = document.getElementById("signup-email").value.trim();
-      const password = document.getElementById("signup-password").value.trim();
+      const name = document.getElementById("signup-name")?.value.trim();
+      const email = document.getElementById("signup-email")?.value.trim();
+      const password = document.getElementById("signup-password")?.value.trim();
 
       if (!name || !email || !password) {
         setStatus("signupStatus", "Please complete all sign-up fields.", "error");
         return;
       }
 
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
+      if (!emailValidator(email)) {
         setStatus("signupStatus", "Please enter a valid email address.", "error");
         return;
       }
@@ -131,22 +216,1005 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const user = {
-        name,
-        email,
-        provider: "email"
-      };
+      if (window.location.protocol === "file:") {
+        alert("Please run this app from a local web server, for example:\n\npython -m http.server 8000\n\nThen open http://localhost:8000");
+        return;
+      }
 
-      localStorage.setItem("bravelyn_user", JSON.stringify(user));
-      setStatus("signupStatus", "Your account has been created successfully.", "success");
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 700);
+      try {
+        const result = await createUserWithEmailAndPassword(auth, email, password);
+        const user = result.user;
+        saveLocalUser({
+          name: name || user.displayName || user.email?.split("@")[0] || "New learner",
+          email: user.email,
+          provider: "email"
+        });
+        setStatus("signupStatus", "Account created successfully.", "success");
+        redirectAfterAuth();
+      } catch (error) {
+        console.error(error);
+        setStatus("signupStatus", "Unable to create your account. Please try again.", "error");
+      }
     });
   }
 
+  const googleButtons = document.querySelectorAll("[data-google-auth]");
+  googleButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      if (window.location.protocol === "file:") {
+        alert("Please run this app from a local web server, for example:\n\npython -m http.server 8000\n\nThen open http://localhost:8000");
+        return;
+      }
+
+      try {
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
+        saveLocalUser({
+          name: user.displayName || user.email?.split("@")[0] || "Learner",
+          email: user.email,
+          provider: "google"
+        });
+        redirectAfterAuth();
+      } catch (error) {
+        console.error(error);
+        alert("Google sign-in was cancelled or failed. Please try again.");
+      }
+    });
+  });
+};
+
+const initEnquiryForm = () => {
+  const form = document.getElementById("enquiryForm");
+  const formStatus = document.getElementById("formStatus");
+
+  if (!form || !formStatus) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const consent = document.getElementById("consent");
+    if (!consent || !consent.checked) {
+      formStatus.textContent = "Please confirm your consent before submitting.";
+      formStatus.className = "form-status show error";
+      return;
+    }
+
+    const fullName = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const programme = document.getElementById("programme").value;
+    const message = document.getElementById("message").value.trim();
+
+    formStatus.textContent = "Opening your email app with your enquiry...";
+    formStatus.className = "form-status show success";
+
+    const subject = `Programme enquiry — ${programme}`;
+    const body = [
+      "Hello Bravelyn Digital Academy,",
+      "",
+      "I would like to enquire about your programme.",
+      "",
+      `Name: ${fullName}`,
+      `Email: ${email}`,
+      `Programme: ${programme}`,
+      "",
+      `Enquiry:\n${message}`
+    ].join("\n");
+
+    window.location.href = `mailto:wisdomkwametorku123@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+};
+
+const initLogout = () => {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (!logoutBtn) return;
+
+  logoutBtn.addEventListener("click", async () => {
+    try {
+      await signOut(auth);
+      localStorage.removeItem("bravelyn_user");
+      window.location.href = "signin.html";
+    } catch (error) {
+      console.error(error);
+      localStorage.removeItem("bravelyn_user");
+      window.location.href = "signin.html";
+    }
+  });
+};
+
+const initYear = () => {
   const yearNode = document.getElementById("year");
-  if (yearNode) {
-    yearNode.textContent = new Date().getFullYear();
+  if (yearNode) yearNode.textContent = new Date().getFullYear();
+};
+
+const authGuard = () => {
+  const currentPath = window.location.pathname.split("/").pop();
+  const localUser = getLocalUser();
+
+  if ((currentPath === "signin.html" || currentPath === "signup.html") && localUser) {
+    window.location.href = "dashboard.html";
+    return;
   }
-});
+
+  if (currentPath === "dashboard.html" && !localUser && !auth.currentUser) {
+    window.location.href = "signin.html";
+  }
+};
+
+const onLoad = () => {
+  initReveal();
+  initFaq();
+  initNav();
+  initBackToTop();
+  initAuthForms();
+  initEnquiryForm();
+  initLogout();
+  initYear();
+  authGuard();
+
+  onAuthStateChanged(auth, (user) => {
+    handleAuthState(user);
+    if (user) {
+      const currentPath = window.location.pathname.split("/").pop();
+      if (currentPath === "signin.html" || currentPath === "signup.html") {
+        window.location.href = "dashboard.html";
+      }
+    }
+  });
+};
+
+if (window.location.protocol === "file:") {
+  const isLocalSafe = safeHostnames.includes(window.location.hostname);
+  if (!isLocalSafe) {
+    alert("Please run this app from a local web server, for example:\n\npython -m http.server 8000\n\nThen open http://localhost:8000");
+  }
+}
+
+onLoad();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+after
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+n
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

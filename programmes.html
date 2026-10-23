@@ -1,3 +1,136 @@
-  <script type="module" src="script.js"></script>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101828" />
+    <title>Dashboard | Bravelyn Digital Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dashboard-page">
+    <header class="site-header dashboard-header">
+      <div class="container nav">
+        <a href="index.html" class="brand" aria-label="Bravelyn homepage">
+          <span class="brand-text">
+            <strong>Bravelyn</strong>
+            <small>Digital Academy</small>
+          </span>
+        </a>
+
+        <div class="dashboard-user" id="userBadge">Guest</div>
+      </div>
+    </header>
+
+    <main class="dashboard-shell">
+      <div class="container dashboard-layout">
+        <aside class="dashboard-sidebar">
+          <div class="nav-panel">
+            <span class="panel-label">Overview</span>
+            <nav>
+              <a href="#" class="active">Dashboard</a>
+              <a href="#">My courses</a>
+              <a href="#">Assignments</a>
+              <a href="#">Portfolio</a>
+              <a href="#">Messages</a>
+              <a href="#">Settings</a>
+            </nav>
+          </div>
+          <button id="logoutBtn" class="btn btn-secondary full-width">Log out</button>
+        </aside>
+
+        <section class="dashboard-main">
+          <div class="welcome-panel reveal">
+            <div>
+              <span class="kicker">Learning dashboard</span>
+              <h1>Welcome back, <span id="welcomeName">Learner</span></h1>
+            </div>
+            <a href="programmes.html" class="btn btn-primary">Browse programmes</a>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card reveal">
+              <span>Courses started</span>
+              <strong>03</strong>
+            </article>
+            <article class="stat-card reveal">
+              <span>Assignments</span>
+              <strong>08</strong>
+            </article>
+            <article class="stat-card reveal">
+              <span>Hours studied</span>
+              <strong>21</strong>
+            </article>
+            <article class="stat-card reveal">
+              <span>Progress</span>
+              <strong>67%</strong>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="panel-card reveal">
+              <div class="panel-head">
+                <h3>Current focus</h3>
+                <span class="chip success">On track</span>
+              </div>
+              <div class="course-summary">
+                <div>
+                  <span class="mini-label">Course</span>
+                  <strong>AI Automation & Prompt Writing</strong>
+                </div>
+                <div>
+                  <span class="mini-label">Next milestone</span>
+                  <strong>Build prompt workflow demo</strong>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel-card reveal">
+              <div class="panel-head">
+                <h3>Upcoming tasks</h3>
+                <span class="chip neutral">This week</span>
+              </div>
+              <ul class="task-list">
+                <li>Finish task 3: website overview mockup</li>
+                <li>Review peer feedback notes</li>
+                <li>Complete admin workflow checklist</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="script.js"></script>
+  </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
