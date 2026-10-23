@@ -4,13 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#101828" />
-    <title>Sign in | Bravelyn Digital Academy</title>
+    <meta name="description" content="Create an account with Bravelyn Digital Academy and start learning practical digital and creative skills." />
+    <title>Create account | Bravelyn Digital Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -23,14 +21,13 @@
           </span>
         </a>
 
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
-          ☰
-        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
 
         <nav class="nav-links" id="navLinks" aria-label="Main navigation">
           <a href="index.html">Home</a>
           <a href="programmes.html">Programmes</a>
           <a href="about.html">About</a>
+          <a href="learning.html">How it works</a>
           <a href="faq.html">FAQs</a>
           <a href="contact.html">Contact</a>
           <a href="signin.html" class="nav-signin">Sign in</a>
@@ -42,54 +39,58 @@
     <main class="auth-page">
       <div class="container auth-shell">
         <aside class="auth-visual">
-          <span class="auth-kicker">Welcome back</span>
-          <h1>Continue your learning journey.</h1>
-          <p>Access your lessons, track progress, and keep building real confidence.</p>
+          <span class="auth-kicker">Start today</span>
+          <h1>Build practical skills with confidence.</h1>
+          <p>Join Bravelyn today and start learning in a way that helps you show proof of work.</p>
           <ul>
-            <li>View your learning path</li>
-            <li>Track course progress</li>
-            <li>Build a portfolio of work</li>
+            <li>Explore digital and creative programmes</li>
+            <li>Learn with guided, practical tasks</li>
+            <li>Build your next career advantage</li>
           </ul>
         </aside>
 
         <div class="auth-card">
           <div class="auth-header">
-            <span class="kicker">Sign in</span>
-            <h2>Welcome back</h2>
+            <span class="kicker">Create account</span>
+            <h2>Get started</h2>
           </div>
 
-          <button type="button" class="google-btn" data-google-auth="signin">
+          <button type="button" class="google-btn" data-google-auth="signup">
             <span class="google-icon">G</span>
-            Continue with Google
+            Sign up with Google
           </button>
 
           <div class="divider">or</div>
 
-          <form id="signinForm" novalidate>
+          <form id="signupForm" novalidate>
             <div class="field">
-              <label for="signin-email">Email address</label>
-              <input id="signin-email" type="email" placeholder="you@example.com" required />
+              <label for="signup-name">Full name</label>
+              <input id="signup-name" type="text" placeholder="Your full name" required />
             </div>
 
             <div class="field">
-              <label for="signin-password">Password</label>
-              <input id="signin-password" type="password" placeholder="Enter your password" required />
+              <label for="signup-email">Email address</label>
+              <input id="signup-email" type="email" placeholder="you@example.com" required />
             </div>
 
-            <div class="auth-row">
+            <div class="field">
+              <label for="signup-password">Password</label>
+              <input id="signup-password" type="password" placeholder="Create a strong password" required />
+            </div>
+
+            <div class="terms-row">
               <label class="remember-me">
-                <input type="checkbox" />
-                <span>Remember me</span>
+                <input type="checkbox" required />
+                <span>I agree to the terms</span>
               </label>
-              <a href="contact.html">Need help?</a>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-            <div id="signinStatus" class="status" aria-live="polite"></div>
+            <button type="submit" class="btn btn-primary btn-block">Create account</button>
+            <div id="signupStatus" class="status" aria-live="polite"></div>
           </form>
 
           <p class="auth-switch">
-            Don’t have an account? <a href="signup.html">Create one</a>
+            Already have an account? <a href="signin.html">Sign in</a>
           </p>
         </div>
       </div>
@@ -98,89 +99,3 @@
     <script type="module" src="script.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

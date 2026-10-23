@@ -4,17 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#101828" />
-    <title>Create account | Bravelyn Digital Academy</title>
+    <title>Dashboard | Bravelyn Digital Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <header class="site-header">
+  <body class="dashboard-page">
+    <header class="site-header dashboard-header">
       <div class="container nav">
         <a href="index.html" class="brand" aria-label="Bravelyn homepage">
           <span class="brand-text">
@@ -23,105 +20,89 @@
           </span>
         </a>
 
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
-          ☰
-        </button>
-
-        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-          <a href="index.html">Home</a>
-          <a href="programmes.html">Programmes</a>
-          <a href="about.html">About</a>
-          <a href="faq.html">FAQs</a>
-          <a href="contact.html">Contact</a>
-          <a href="signin.html" class="nav-signin">Sign in</a>
-          <a href="signup.html" class="nav-cta">Sign up</a>
-        </nav>
+        <div class="dashboard-user" id="userBadge">Guest</div>
       </div>
     </header>
 
-    <main class="auth-page">
-      <div class="container auth-shell">
-        <aside class="auth-visual">
-          <span class="auth-kicker">Start today</span>
-          <h1>Build practical skills with confidence.</h1>
-          <p>Join Bravelyn today and start learning in a way that helps you show proof of work.</p>
-          <ul>
-            <li>Explore digital and creative programmes</li>
-            <li>Learn with guided, practical tasks</li>
-            <li>Build your next career advantage</li>
-          </ul>
+    <main class="dashboard-shell">
+      <div class="container dashboard-layout">
+        <aside class="dashboard-sidebar">
+          <div class="nav-panel">
+            <span class="panel-label">Overview</span>
+            <nav>
+              <a href="#" class="active">Dashboard</a>
+              <a href="#">My courses</a>
+              <a href="#">Assignments</a>
+              <a href="#">Portfolio</a>
+              <a href="#">Messages</a>
+              <a href="#">Settings</a>
+            </nav>
+          </div>
+          <button id="logoutBtn" class="btn btn-secondary full-width">Log out</button>
         </aside>
 
-        <div class="auth-card">
-          <div class="auth-header">
-            <span class="kicker">Create account</span>
-            <h2>Get started</h2>
+        <section class="dashboard-main">
+          <div class="welcome-panel reveal">
+            <div>
+              <span class="kicker">Learning dashboard</span>
+              <h1>Welcome back, <span id="welcomeName">Learner</span></h1>
+            </div>
+            <a href="programmes.html" class="btn btn-primary">Browse programmes</a>
           </div>
 
-          <button type="button" class="google-btn" data-google-auth="signup">
-            <span class="google-icon">G</span>
-            Sign up with Google
-          </button>
+          <div class="stats-grid">
+            <article class="stat-card reveal">
+              <span>Courses started</span>
+              <strong>03</strong>
+            </article>
+            <article class="stat-card reveal">
+              <span>Assignments</span>
+              <strong>08</strong>
+            </article>
+            <article class="stat-card reveal">
+              <span>Hours studied</span>
+              <strong>21</strong>
+            </article>
+            <article class="stat-card reveal">
+              <span>Progress</span>
+              <strong>67%</strong>
+            </article>
+          </div>
 
-          <div class="divider">or</div>
+          <div class="dashboard-grid">
+            <article class="panel-card reveal">
+              <div class="panel-head">
+                <h3>Current focus</h3>
+                <span class="chip success">On track</span>
+              </div>
+              <div class="course-summary">
+                <div>
+                  <span class="mini-label">Course</span>
+                  <strong>AI Automation & Prompt Writing</strong>
+                </div>
+                <div>
+                  <span class="mini-label">Next milestone</span>
+                  <strong>Build prompt workflow demo</strong>
+                </div>
+              </div>
+            </article>
 
-          <form id="signupForm" novalidate>
-            <div class="field">
-              <label for="signup-name">Full name</label>
-              <input id="signup-name" type="text" placeholder="Your full name" required />
-            </div>
-
-            <div class="field">
-              <label for="signup-email">Email address</label>
-              <input id="signup-email" type="email" placeholder="you@example.com" required />
-            </div>
-
-            <div class="field">
-              <label for="signup-password">Password</label>
-              <input id="signup-password" type="password" placeholder="Create a strong password" required />
-            </div>
-
-            <div class="terms-row">
-              <label class="remember-me">
-                <input type="checkbox" required />
-                <span>I agree to the terms</span>
-              </label>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-block">Create account</button>
-            <div id="signupStatus" class="status" aria-live="polite"></div>
-          </form>
-
-          <p class="auth-switch">
-            Already have an account? <a href="signin.html">Sign in</a>
-          </p>
-        </div>
+            <article class="panel-card reveal">
+              <div class="panel-head">
+                <h3>Upcoming tasks</h3>
+                <span class="chip neutral">This week</span>
+              </div>
+              <ul class="task-list">
+                <li>Finish task 3: website overview mockup</li>
+                <li>Review peer feedback notes</li>
+                <li>Complete admin workflow checklist</li>
+              </ul>
+            </article>
+          </div>
+        </section>
       </div>
     </main>
 
     <script type="module" src="script.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -3,18 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#101828" />
-    <title>Dashboard | Bravelyn Digital Academy</title>
+    <meta name="description" content="Explore Bravelyn Digital Academy programmes in digital admin, AI, design, and career-ready skill building." />
+    <title>Programmes | Bravelyn Digital Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="dashboard-page">
-    <header class="site-header dashboard-header">
+  <body>
+    <header class="site-header">
       <div class="container nav">
         <a href="index.html" class="brand" aria-label="Bravelyn homepage">
           <span class="brand-text">
@@ -22,115 +19,96 @@
             <small>Digital Academy</small>
           </span>
         </a>
-
-        <div class="dashboard-user" id="userBadge">Guest</div>
+        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="programmes.html">Programmes</a>
+          <a href="about.html">About</a>
+          <a href="learning.html">How it works</a>
+          <a href="faq.html">FAQs</a>
+          <a href="contact.html">Contact</a>
+          <a href="signin.html" class="nav-signin">Sign in</a>
+          <a href="signup.html" class="nav-cta">Sign up</a>
+        </nav>
       </div>
     </header>
 
-    <main class="dashboard-shell">
-      <div class="container dashboard-layout">
-        <aside class="dashboard-sidebar">
-          <div class="nav-panel">
-            <span class="panel-label">Overview</span>
-            <nav>
-              <a href="#" class="active">Dashboard</a>
-              <a href="#">My courses</a>
-              <a href="#">Assignments</a>
-              <a href="#">Portfolio</a>
-              <a href="#">Messages</a>
-              <a href="#">Settings</a>
-            </nav>
-          </div>
-          <button id="logoutBtn" class="btn btn-secondary full-width">Log out</button>
-        </aside>
+    <main class="page-shell">
+      <section class="page-hero">
+        <div class="container narrow reveal">
+          <span class="kicker">Programmes</span>
+          <h1>Choose the path that fits your next move.</h1>
+          <p>Structured learning experiences designed to help you build practical confidence and real proof of work.</p>
+        </div>
+      </section>
 
-        <section class="dashboard-main">
-          <div class="welcome-panel reveal">
-            <div>
-              <span class="kicker">Learning dashboard</span>
-              <h1>Welcome back, <span id="welcomeName">Learner</span></h1>
-            </div>
-            <a href="programmes.html" class="btn btn-primary">Browse programmes</a>
-          </div>
+      <section class="section">
+        <div class="container programmes-grid">
+          <article class="programme-card featured reveal">
+            <div class="programme-icon">▤</div>
+            <h3>Virtual Administrative Assistant</h3>
+            <div class="price"><strong>GH₵50</strong><span>GHS</span></div>
+            <p>Learn communication, task management, online operations, client coordination, and practical office support.</p>
+            <div class="programme-outcome"><strong>Outcome:</strong> Administrative workflow portfolio and task-ready toolkit.</div>
+            <a href="contact.html" class="card-link">Enquire now →</a>
+          </article>
 
-          <div class="stats-grid">
-            <article class="stat-card reveal">
-              <span>Courses started</span>
-              <strong>03</strong>
-            </article>
-            <article class="stat-card reveal">
-              <span>Assignments</span>
-              <strong>08</strong>
-            </article>
-            <article class="stat-card reveal">
-              <span>Hours studied</span>
-              <strong>21</strong>
-            </article>
-            <article class="stat-card reveal">
-              <span>Progress</span>
-              <strong>67%</strong>
-            </article>
-          </div>
+          <article class="programme-card reveal">
+            <div class="programme-icon">✦</div>
+            <h3>AI Automation & Website Building</h3>
+            <div class="price"><strong>GH₵50</strong><span>GHS</span></div>
+            <p>Build practical AI-powered workflows, improve productivity, and create simple digital experiences with modern tools.</p>
+            <div class="programme-outcome"><strong>Outcome:</strong> Workflow system, prompt collection, and website concept.</div>
+            <a href="contact.html" class="card-link">Enquire now →</a>
+          </article>
 
-          <div class="dashboard-grid">
-            <article class="panel-card reveal">
-              <div class="panel-head">
-                <h3>Current focus</h3>
-                <span class="chip success">On track</span>
-              </div>
-              <div class="course-summary">
-                <div>
-                  <span class="mini-label">Course</span>
-                  <strong>AI Automation & Prompt Writing</strong>
-                </div>
-                <div>
-                  <span class="mini-label">Next milestone</span>
-                  <strong>Build prompt workflow demo</strong>
-                </div>
-              </div>
-            </article>
-
-            <article class="panel-card reveal">
-              <div class="panel-head">
-                <h3>Upcoming tasks</h3>
-                <span class="chip neutral">This week</span>
-              </div>
-              <ul class="task-list">
-                <li>Finish task 3: website overview mockup</li>
-                <li>Review peer feedback notes</li>
-                <li>Complete admin workflow checklist</li>
-              </ul>
-            </article>
-          </div>
-        </section>
-      </div>
+          <article class="programme-card reveal">
+            <div class="programme-icon">▣</div>
+            <h3>Graphic Design</h3>
+            <div class="price"><strong>GH₵50</strong><span>GHS</span></div>
+            <p>Develop visual communication skills, layout thinking, brand awareness, and digital design confidence.</p>
+            <div class="programme-outcome"><strong>Outcome:</strong> Brand asset pack and campaign visual set.</div>
+            <a href="contact.html" class="card-link">Enquire now →</a>
+          </article>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <div class="footer-brand">
+          <div class="brand">
+            <span class="brand-text">
+              <strong>Bravelyn</strong>
+              <small>Digital Academy</small>
+            </span>
+          </div>
+          <p>Practical digital, creative, and AI-enabled learning designed to help learners build skills they can apply and demonstrate.</p>
+        </div>
+
+        <div class="footer-links">
+          <div>
+            <h3>Explore</h3>
+            <a href="programmes.html">Programmes</a>
+            <a href="about.html">About</a>
+            <a href="learning.html">How it works</a>
+            <a href="faq.html">FAQs</a>
+          </div>
+
+          <div>
+            <h3>Get in touch</h3>
+            <a href="contact.html">Make an enquiry</a>
+            <a href="mailto:wisdomkwametorku123@gmail.com">Email us</a>
+            <a href="tel:+233541235232">Call us</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <span>© <span id="year"></span> Bravelyn Digital Academy</span>
+        <span>Learn practical skills. Build real proof.</span>
+      </div>
+    </footer>
 
     <script type="module" src="script.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
