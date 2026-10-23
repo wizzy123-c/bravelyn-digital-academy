@@ -1,105 +1,250 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#101828" />
-    <title>Create account | Bravelyn Digital Academy</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav">
-        <a href="index.html" class="brand" aria-label="Bravelyn homepage">
-          <span class="brand-mark">B</span>
-          <span class="brand-text">
-            <strong>Bravelyn</strong>
-            <small>Digital Academy</small>
-          </span>
-        </a>
+const safeHostnames = ["localhost", "127.0.0.1"];
 
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
-          ☰
-        </button>
+const getLocalUser = () => {
+  try {
+    return JSON.parse(localStorage.getItem("bravelyn_user") || "null");
+  } catch (error) {
+    return null;
+  }
+};
 
-        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-          <a href="index.html">Home</a>
-          <a href="index.html#programmes">Programmes</a>
-          <a href="index.html#about">About</a>
-          <a href="index.html#faq">FAQs</a>
-          <a href="index.html#contact">Contact</a>
-          <a href="signin.html" class="nav-signin">Sign in</a>
-          <a href="signup.html" class="nav-cta">Sign up</a>
-        </nav>
-      </div>
-    </header>
+const saveLocalUser = (user) => {
+  localStorage.setItem("bravelyn_user", JSON.stringify(user));
+};
 
-    <main class="auth-page">
-      <div class="container auth-shell">
-        <aside class="auth-visual">
-          <span class="auth-kicker">Start today</span>
-          <h1>Build practical skills with confidence.</h1>
-          <p>Join Bravelyn today and start learning in a way that helps you show proof of work.</p>
-          <ul>
-            <li>Explore digital and creative programmes</li>
-            <li>Learn with guided, practical tasks</li>
-            <li>Build your next career advantage</li>
-          </ul>
-        </aside>
+const setUserBadge = () => {
+  const userBadge = document.getElementById("userBadge");
+  const welcomeName = document.getElementById("welcomeName");
+  const localUser = getLocalUser();
 
-        <div class="auth-card">
-          <div class="auth-header">
-            <span class="kicker">Create account</span>
-            <h2>Get started</h2>
-          </div>
+  if (!localUser) return;
 
-          <button type="button" class="google-btn" data-google-auth="signup">
-            <span class="google-icon">G</span>
-            Sign up with Google
-          </button>
+  const displayName = localUser.name || localUser.email || "Learner";
 
-          <div class="divider">or</div>
+  if (userBadge) userBadge.textContent = displayName;
+  if (welcomeName) welcomeName.textContent = displayName;
+};
 
-          <form id="signupForm" novalidate>
-            <div class="field">
-              <label for="signup-name">Full name</label>
-              <input id="signup-name" type="text" placeholder="Your full name" required />
-            </div>
+const routeAuthenticatedUser = () => {
+  const currentPath = window.location.pathname.split("/").pop();
+  const localUser = getLocalUser();
 
-            <div class="field">
-              <label for="signup-email">Email address</label>
-              <input id="signup-email" type="email" placeholder="you@example.com" required />
-            </div>
+  if (currentPath === "signin.html" || currentPath === "signup.html") {
+    if (localUser) {
+      window.location.href = "dashboard.html";
+    }
+  }
 
-            <div class="field">
-              <label for="signup-password">Password</label>
-              <input id="signup-password" type="password" placeholder="Create a strong password" required />
-            </div>
+  if (currentPath === "dashboard.html" && !localUser) {
+    window.location.href = "signin.html";
+  }
+};
 
-            <div class="terms-row">
-              <label class="remember-me">
-                <input type="checkbox" required />
-                <span>I agree to the terms</span>
-              </label>
-            </div>
+const showLocalServerWarning = () => {
+  if (window.location.protocol === "file:") {
+    alert("Please run this app from a local web server, for example:\n\npython -m http.server 8000\n\nThen open http://localhost:8000");
+  }
+};
 
-            <button type="submit" class="btn btn-primary btn-block">Create account</button>
-            <div id="signupStatus" class="status" aria-live="polite"></div>
-          </form>
+const navToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 
-          <p class="auth-switch">
-            Already have an account? <a href="signin.html">Sign in</a>
-          </p>
-        </div>
-      </div>
-    </main>
+if (navToggle && navLinks) {
+  navToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+    const isOpen = navLinks.classList.contains("open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
 
-    <script src="script.js"></script>
-  </body>
-</html>
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+document.querySelectorAll(".faq-item").forEach((item) => {
+  const button = item.querySelector(".faq-question");
+  const toggle = item.querySelector(".faq-toggle");
+
+  button?.addEventListener("click", () => {
+    const isOpen = item.classList.contains("active");
+
+    document.querySelectorAll(".faq-item").forEach((faq) => {
+      faq.classList.remove("active");
+      const faqToggle = faq.querySelector(".faq-toggle");
+      if (faqToggle) faqToggle.textContent = "+";
+    });
+
+    if (!isOpen) {
+      item.classList.add("active");
+      if (toggle) toggle.textContent = "−";
+    }
+  });
+});
+
+const backTop = document.getElementById("backTop");
+if (backTop) {
+  const toggleBackTop = () => {
+    if (window.scrollY > 500) {
+      backTop.classList.add("show");
+    } else {
+      backTop.classList.remove("show");
+    }
+  };
+
+  window.addEventListener("scroll", toggleBackTop);
+  toggleBackTop();
+
+  backTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+const setStatus = (elementId, message, type) => {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  el.textContent = message;
+  el.className = "status";
+  if (type) el.classList.add(type);
+};
+
+const emailValidator = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+const signInLocal = (email, password) => {
+  const savedUser = getLocalUser();
+
+  if (savedUser && savedUser.email && savedUser.email.toLowerCase() === email.toLowerCase()) {
+    return savedUser;
+  }
+
+  if (!password || password.length < 6) {
+    throw new Error("Password must be at least 6 characters long.");
+  }
+
+  const user = {
+    name: email.split("@")[0],
+    email,
+    provider: "local"
+  };
+
+  saveLocalUser(user);
+  return user;
+};
+
+const signUpLocal = (name, email, password) => {
+  if (!name || !email || !password) {
+    throw new Error("Please complete all fields.");
+  }
+
+  if (!emailValidator(email)) {
+    throw new Error("Please enter a valid email address.");
+  }
+
+  if (password.length < 6) {
+    throw new Error("Password must be at least 6 characters long.");
+  }
+
+  const user = {
+    name,
+    email,
+    provider: "local"
+  };
+
+  saveLocalUser(user);
+  return user;
+};
+
+const signinForm = document.getElementById("signinForm");
+if (signinForm) {
+  signinForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById("signin-email").value.trim();
+    const password = document.getElementById("signin-password").value.trim();
+
+    if (!email || !password) {
+      setStatus("signinStatus", "Please enter both email and password.", "error");
+      return;
+    }
+
+    if (!emailValidator(email)) {
+      setStatus("signinStatus", "Please enter a valid email address.", "error");
+      return;
+    }
+
+    try {
+      const user = signInLocal(email, password);
+      setStatus("signinStatus", `Welcome back, ${user.name || user.email}!`, "success");
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 500);
+    } catch (error) {
+      setStatus("signinStatus", error.message || "Unable to sign in.", "error");
+    }
+  });
+}
+
+const signupForm = document.getElementById("signupForm");
+if (signupForm) {
+  signupForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById("signup-name").value.trim();
+    const email = document.getElementById("signup-email").value.trim();
+    const password = document.getElementById("signup-password").value.trim();
+
+    try {
+      const user = signUpLocal(name, email, password);
+      setStatus("signupStatus", `Account created for ${user.name}.`, "success");
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 600);
+    } catch (error) {
+      setStatus("signupStatus", error.message || "Unable to create account.", "error");
+    }
+  });
+}
+
+const googleButtons = document.querySelectorAll("[data-google-auth]");
+googleButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const provider = button.getAttribute("data-google-auth");
+    const user = {
+      name: provider === "signup" ? "New learner" : "Google learner",
+      email: "learner@bravelyn.local",
+      provider: "google"
+    };
+
+    saveLocalUser(user);
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 250);
+  });
+});
+
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("bravelyn_user");
+    window.location.href = "signin.html";
+  });
+}
+
+const yearNode = document.getElementById("year");
+if (yearNode) yearNode.textContent = new Date().getFullYear();
+
+routeAuthenticatedUser();
+setUserBadge();
+
+if (window.location.pathname.includes("dashboard.html")) {
+  setUserBadge();
+}
+
+if (window.location.protocol === "file:") {
+  const isLocalSafe = safeHostnames.includes(window.location.hostname);
+  if (!isLocalSafe) {
+    showLocalServerWarning();
+  }
+}
