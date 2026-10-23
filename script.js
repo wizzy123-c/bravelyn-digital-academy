@@ -1,3 +1,48 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCoO9qoyRdUSPXnH9NzPWNTcuMwxlBuXW0",
+  authDomain: "bravelyn-digital-academy.firebaseapp.com",
+  projectId: "bravelyn-digital-academy",
+  storageBucket: "bravelyn-digital-academy.firebasestorage.app",
+  messagingSenderId: "502770426439",
+  appId: "1:502770426439:web:c132b2a93a8d52d6fc8762",
+  measurementId: "G-KNCSDMZSNQ"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
+
+const saveLocalUser = (user) => {
+  localStorage.setItem('bravelyn_user', JSON.stringify(user));
+};
+
+const getLocalUser = () => {
+  try {
+    return JSON.parse(localStorage.getItem('bravelyn_user') || 'null');
+  } catch (error) {
+    return null;
+  }
+};
+
+const redirectAfterAuth = () => {
+  const currentPath = window.location.pathname.split('/').pop();
+  if (currentPath === 'signin.html' || currentPath === 'signup.html') {
+    window.location.href = 'index.html';
+  }
+};
+
 const navToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
 
@@ -23,7 +68,8 @@ document.querySelectorAll('.faq-question').forEach(button => {
 
     document.querySelectorAll('.faq-item').forEach(faq => {
       faq.classList.remove('active');
-      faq.querySelector('.faq-question span:last-child').textContent = '+';
+      const question = faq.querySelector('.faq-question span:last-child');
+      if (question) question.textContent = '+';
     });
 
     if (!isOpen) {
@@ -33,26 +79,30 @@ document.querySelectorAll('.faq-question').forEach(button => {
   });
 });
 
-const authButtons = document.querySelectorAll('[data-google-auth]');
-authButtons.forEach((button) => {
+const googleButtons = document.querySelectorAll('[data-google-auth]');
+
+googleButtons.forEach((button) => {
   button.addEventListener('click', async () => {
-    const mode = button.getAttribute('data-google-auth');
-
-    if (window.googleClientId && window.googleClientId.length > 0) {
-      const message = mode === 'signup'
-        ? 'Google sign up is ready to be connected to your OAuth provider.'
-        : 'Google sign in is ready to be connected to your OAuth provider.';
-      alert(message);
-      return;
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      saveLocalUser({
+        name: user.displayName || 'Google User',
+        email: user.email,
+        photoURL: user.photoURL || '',
+        provider: 'google'
+      });
+      redirectAfterAuth();
+    } catch (error) {
+      console.error('Google auth error:', error);
+      alert('Google sign-in was cancelled or failed. Please try again.');
     }
-
-    alert('Google authentication is configured in the app, but the Google OAuth client ID is not set yet. Add your Firebase/Google credentials to enable live Google sign-in.');
   });
 });
 
 const signinForm = document.getElementById('signinForm');
 if (signinForm) {
-  signinForm.addEventListener('submit', (event) => {
+  signinForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const email = document.getElementById('signin-email').value.trim();
     const password = document.getElementById('signin-password').value.trim();
@@ -62,14 +112,25 @@ if (signinForm) {
       return;
     }
 
-    localStorage.setItem('bravelyn_user', JSON.stringify({ email, provider: 'email' }));
-    window.location.href = 'index.html';
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      const user = result.user;
+      saveLocalUser({
+        name: user.displayName || 'Learner',
+        email: user.email,
+        provider: 'email'
+      });
+      redirectAfterAuth();
+    } catch (error) {
+      console.error('Email sign-in error:', error);
+      alert('Unable to sign in. Please check your email and password or create an account.');
+    }
   });
 }
 
 const signupForm = document.getElementById('signupForm');
 if (signupForm) {
-  signupForm.addEventListener('submit', (event) => {
+  signupForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const name = document.getElementById('signup-name').value.trim();
     const email = document.getElementById('signup-email').value.trim();
@@ -80,8 +141,19 @@ if (signupForm) {
       return;
     }
 
-    localStorage.setItem('bravelyn_user', JSON.stringify({ name, email, provider: 'email' }));
-    window.location.href = 'index.html';
+    try {
+      const result = await createUserWithEmailAndPassword(auth, email, password);
+      const user = result.user;
+      saveLocalUser({
+        name: name || user.displayName || 'New Learner',
+        email: user.email,
+        provider: 'email'
+      });
+      redirectAfterAuth();
+    } catch (error) {
+      console.error('Email sign-up error:', error);
+      alert('Unable to create your account. Please check your details and try again.');
+    }
   });
 }
 
@@ -142,3 +214,11 @@ if (backTop) {
 
 const yearNode = document.getElementById('year');
 if (yearNode) yearNode.textContent = new Date().getFullYear();
+
+const userBadge = document.getElementById('userBadge');
+if (userBadge) {
+  const user = getLocalUser();
+  if (user && user.email) {
+    userBadge.textContent = user.name || user.email.split('@')[0];
+  }
+}
