@@ -33,6 +33,58 @@ document.querySelectorAll('.faq-question').forEach(button => {
   });
 });
 
+const authButtons = document.querySelectorAll('[data-google-auth]');
+authButtons.forEach((button) => {
+  button.addEventListener('click', async () => {
+    const mode = button.getAttribute('data-google-auth');
+
+    if (window.googleClientId && window.googleClientId.length > 0) {
+      const message = mode === 'signup'
+        ? 'Google sign up is ready to be connected to your OAuth provider.'
+        : 'Google sign in is ready to be connected to your OAuth provider.';
+      alert(message);
+      return;
+    }
+
+    alert('Google authentication is configured in the app, but the Google OAuth client ID is not set yet. Add your Firebase/Google credentials to enable live Google sign-in.');
+  });
+});
+
+const signinForm = document.getElementById('signinForm');
+if (signinForm) {
+  signinForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const email = document.getElementById('signin-email').value.trim();
+    const password = document.getElementById('signin-password').value.trim();
+
+    if (!email || !password) {
+      alert('Please enter your email and password.');
+      return;
+    }
+
+    localStorage.setItem('bravelyn_user', JSON.stringify({ email, provider: 'email' }));
+    window.location.href = 'index.html';
+  });
+}
+
+const signupForm = document.getElementById('signupForm');
+if (signupForm) {
+  signupForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = document.getElementById('signup-name').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    const password = document.getElementById('signup-password').value.trim();
+
+    if (!name || !email || !password) {
+      alert('Please complete all sign up fields.');
+      return;
+    }
+
+    localStorage.setItem('bravelyn_user', JSON.stringify({ name, email, provider: 'email' }));
+    window.location.href = 'index.html';
+  });
+}
+
 const form = document.getElementById('enquiryForm');
 const formStatus = document.getElementById('formStatus');
 
