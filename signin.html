@@ -1,3 +1,346 @@
-  <script type="module" src="script.js"></script>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101828" />
+    <meta
+      name="description"
+      content="Bravelyn Digital Academy helps learners build practical digital, creative, and AI-enabled skills through guided online training and portfolio-ready work."
+    />
+    <title>Bravelyn Digital Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="#top" class="brand" aria-label="Bravelyn homepage">
+          <span class="brand-mark">B</span>
+          <span class="brand-text">
+            <strong>Bravelyn</strong>
+            <small>Digital Academy</small>
+          </span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+          ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+          <a href="#home">Home</a>
+          <a href="#programmes">Programmes</a>
+          <a href="#about">About</a>
+          <a href="#learning">How it works</a>
+          <a href="#faq">FAQs</a>
+          <a href="#contact">Contact</a>
+          <a href="signin.html" class="nav-signin">Sign in</a>
+          <a href="signup.html" class="nav-cta">Sign up</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">Practical online learning</span>
+            <h1>Learn practical skills.<br /><span>Build real proof.</span></h1>
+            <p>
+              Bravelyn helps learners gain real digital, creative, and AI-enabled skills through
+              guided training, hands-on tasks, and portfolio-ready work.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#programmes" class="btn btn-primary">Explore programmes</a>
+              <a href="signup.html" class="btn btn-secondary">Create account</a>
+            </div>
+
+            <p class="hero-note">
+              Already a learner?
+              <a href="signin.html">Sign in</a>
+            </p>
+          </div>
+
+          <div class="hero-card">
+            <div class="hero-card-top">
+              <span class="tag">Skills that become evidence</span>
+              <h3>Learn it. Practise it. Show it.</h3>
+            </div>
+
+            <div class="mini-tags">
+              <span>Digital admin</span>
+              <span>AI & websites</span>
+              <span>Career branding</span>
+              <span>Creative media</span>
+              <span>Online growth</span>
+            </div>
+
+            <div class="hero-badge">Your skills. Your work. Your proof.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="trust-bar">
+        <div class="container trust-grid">
+          <div class="trust-item">
+            <strong>Hands-on assignments</strong>
+            <span>Practical tasks with clear purpose</span>
+          </div>
+          <div class="trust-item">
+            <strong>Guided learning</strong>
+            <span>Feedback that helps you improve</span>
+          </div>
+          <div class="trust-item">
+            <strong>Portfolio-ready</strong>
+            <span>Work you can confidently show</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="section" id="programmes">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Explore our programmes</span>
+            <h2>Practical skills for a digital world</h2>
+            <p>
+              Choose a learning path designed around real tasks, guided learning, and
+              portfolio-ready work.
+            </p>
+          </div>
+
+          <div class="programmes-grid">
+            <article class="programme-card featured">
+              <div class="programme-icon">▤</div>
+              <h3>Virtual Administrative Assistant</h3>
+              <div class="price">
+                <strong>GH₵50</strong>
+                <span>GHS</span>
+              </div>
+              <p>
+                Learn email coordination, calendar handling, task tracking, and professional
+                client communication.
+              </p>
+              <div class="programme-outcome">
+                <strong>Outcome:</strong> Sample admin portfolio and workflow checklist.
+              </div>
+              <a href="#contact" class="card-link">Enquire now →</a>
+            </article>
+
+            <article class="programme-card">
+              <div class="programme-icon">✦</div>
+              <h3>AI Automation, Prompt Writing & Website Building</h3>
+              <div class="price">
+                <strong>GH₵50</strong>
+                <span>GHS</span>
+              </div>
+              <p>
+                Understand prompts, workflows, no-code automation, and how to build a simple
+                website or demo project.
+              </p>
+              <div class="programme-outcome">
+                <strong>Outcome:</strong> Demo workflow and simple website prototype.
+              </div>
+              <a href="#contact" class="card-link">Enquire now →</a>
+            </article>
+
+            <article class="programme-card">
+              <div class="programme-icon">▣</div>
+              <h3>Graphic Design</h3>
+              <div class="price">
+                <strong>GH₵50</strong>
+                <span>GHS</span>
+              </div>
+              <p>
+                Practise layout, typography, visual hierarchy, and digital design for real
+                brand and campaign work.
+              </p>
+              <div class="programme-outcome">
+                <strong>Outcome:</strong> Brand assets and mini campaign design set.
+              </div>
+              <a href="#contact" class="card-link">Enquire now →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container split-layout">
+          <div class="mission-panel">
+            <span class="kicker">Our promise</span>
+            <h3>“Every learner should leave with more than notes.”</h3>
+            <p>
+              Bravelyn is built around practical learning, supportive guidance, and honest
+              communication about outcomes.
+            </p>
+          </div>
+
+          <div class="about-content">
+            <div class="section-head left">
+              <span class="kicker">About Bravelyn</span>
+              <h2>Turn curiosity into capability.</h2>
+            </div>
+
+            <p>
+              Bravelyn Digital Academy is an online learning brand focused on practical
+              digital, creative, AI-enabled, and career-development skills. We help learners
+              build confidence through structured lessons, guided exercises, and portfolio-ready
+              projects.
+            </p>
+
+            <ul class="feature-list">
+              <li><span class="list-dot"></span><div><strong>Practicality:</strong> Skills learners can apply.</div></li>
+              <li><span class="list-dot"></span><div><strong>Integrity:</strong> Honest outcomes and clear terms.</div></li>
+              <li><span class="list-dot"></span><div><strong>Accessibility:</strong> Clear and supportive learning.</div></li>
+              <li><span class="list-dot"></span><div><strong>Creativity:</strong> Original thinking and exploration.</div></li>
+              <li><span class="list-dot"></span><div><strong>Accountability:</strong> Useful feedback and standards.</div></li>
+              <li><span class="list-dot"></span><div><strong>Improvement:</strong> Learning that evolves with the field.</div></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="learning">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">How it works</span>
+            <h2>Learn with a clear path from lesson to portfolio</h2>
+            <p>
+              Your learning journey is designed to connect ideas to action and feedback to
+              confidence.
+            </p>
+          </div>
+
+          <div class="process-grid">
+            <article class="step-card">
+              <span class="step-label">Step 01</span>
+              <h3>Learn the essentials</h3>
+              <p>Understand the foundations through structured learning and guided examples.</p>
+            </article>
+
+            <article class="step-card">
+              <span class="step-label">Step 02</span>
+              <h3>Practise with purpose</h3>
+              <p>Use assignments to apply what you learn in realistic, relevant tasks.</p>
+            </article>
+
+            <article class="step-card">
+              <span class="step-label">Step 03</span>
+              <h3>Use feedback</h3>
+              <p>Improve through review, reflection, and iterative growth.</p>
+            </article>
+
+            <article class="step-card">
+              <span class="step-label">Step 04</span>
+              <h3>Show what you can do</h3>
+              <p>Create a project or portfolio piece that demonstrates your progress.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">FAQs</span>
+            <h2>Frequently asked questions</h2>
+          </div>
+
+          <div class="faq-list">
+            <article class="faq-item active">
+              <button class="faq-question" type="button">
+                <span>Do I need previous experience?</span>
+                <span class="faq-toggle">−</span>
+              </button>
+              <div class="faq-answer">
+                No. Many learners begin with little or no experience and build confidence as they
+                progress.
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button">
+                <span>Are the lessons practical?</span>
+                <span class="faq-toggle">+</span>
+              </button>
+              <div class="faq-answer">
+                Yes. Our learning model is task-based, realistic, and designed to help you apply
+                the concepts immediately.
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button">
+                <span>Do you support career growth?</span>
+                <span class="faq-toggle">+</span>
+              </button>
+              <div class="faq-answer">
+                Yes. We help learners build skills, confidence, and portfolio work that support
+                their next steps.
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="container">
+          <div class="cta-band">
+            <div>
+              <span class="kicker light">Get in touch</span>
+              <h2>Ready to build your next skill?</h2>
+              <p>Tell us what you want to learn and we’ll guide you to the right path.</p>
+            </div>
+            <a href="mailto:wisdomkwametorku123@gmail.com" class="btn btn-primary">Make an enquiry</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <div class="footer-brand">
+          <div class="brand">
+            <span class="brand-mark">B</span>
+            <span class="brand-text">
+              <strong>Bravelyn</strong>
+              <small>Digital Academy</small>
+            </span>
+          </div>
+          <p>Practical digital, creative, and AI-enabled learning designed to help learners build skills they can practise and demonstrate.</p>
+        </div>
+
+        <div class="footer-links">
+          <div>
+            <h3>Explore</h3>
+            <a href="#programmes">Programmes</a>
+            <a href="#about">About</a>
+            <a href="#learning">How it works</a>
+            <a href="#faq">FAQs</a>
+          </div>
+
+          <div>
+            <h3>Get in touch</h3>
+            <a href="#contact">Make an enquiry</a>
+            <a href="mailto:wisdomkwametorku123@gmail.com">Email us</a>
+            <a href="tel:+233541235232">Call us</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <span>© <span id="year"></span> Bravelyn Digital Academy</span>
+        <span>Learn practical skills. Build real proof.</span>
+      </div>
+    </footer>
+
+    <button id="backTop" class="back-top" aria-label="Back to top">↑</button>
+
+    <script src="script.js"></script>
+  </body>
 </html>

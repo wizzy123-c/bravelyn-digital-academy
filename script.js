@@ -1,259 +1,953 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCoO9qoyRdUSPXnH9NzPWNTcuMwxlBuXW0",
-  authDomain: "bravelyn-digital-academy.firebaseapp.com",
-  projectId: "bravelyn-digital-academy",
-  storageBucket: "bravelyn-digital-academy.firebasestorage.app",
-  messagingSenderId: "502770426439",
-  appId: "1:502770426439:web:c132b2a93a8d52d6fc8762",
-  measurementId: "G-KNCSDMZSNQ"
-};
-
-const safeHostnames = ['localhost', '127.0.0.1'];
-const isSecureContext = window.location.protocol !== 'file:' && (safeHostnames.includes(window.location.hostname) || window.location.hostname.includes('.'));
-
-if (!isSecureContext) {
-  console.warn('Auth should be tested from a browser served via localhost or a real domain, not from a file:// URL.');
+:root {
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --panel-soft: #f0f5fb;
+  --navy: #101828;
+  --navy-soft: #1c2d4d;
+  --teal: #1ab4bf;
+  --teal-soft: rgba(26, 180, 191, 0.12);
+  --gold: #f7c75d;
+  --text: #172033;
+  --muted: #58657c;
+  --border: rgba(16, 24, 40, 0.08);
+  --shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
+  --radius: 22px;
+  --radius-sm: 12px;
 }
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: 'select_account' });
+* {
+  box-sizing: border-box;
+}
 
-const saveLocalUser = (user) => {
-  localStorage.setItem('bravelyn_user', JSON.stringify(user));
-};
+html {
+  scroll-behavior: smooth;
+}
 
-const getLocalUser = () => {
-  try {
-    return JSON.parse(localStorage.getItem('bravelyn_user') || 'null');
-  } catch (error) {
-    return null;
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.container {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80px;
+  gap: 1rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--teal), #7fe2e8);
+  display: grid;
+  place-items: center;
+  color: var(--panel);
+  font-weight: 800;
+  box-shadow: var(--shadow);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-text strong {
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+
+.brand-text small {
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.96rem;
+  transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+  opacity: 0.82;
+}
+
+.nav-signin {
+  color: var(--navy-soft);
+}
+
+.nav-cta {
+  background: var(--navy);
+  color: var(--panel) !important;
+  padding: 0.72rem 1.1rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--navy);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.hero {
+  padding: 74px 0 44px;
+  background: radial-gradient(circle at top right, rgba(26, 180, 191, 0.15), transparent 25%),
+    linear-gradient(135deg, #f7fafc 0%, #ffffff 60%, #f3f8fb 100%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.eyebrow,
+.kicker {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 800;
+}
+
+.hero-copy h1 {
+  margin: 0.7rem 0 1rem;
+  font-size: clamp(2.7rem, 5vw, 4.4rem);
+  line-height: 1.06;
+  letter-spacing: -0.06em;
+  color: var(--navy);
+}
+
+.hero-copy h1 span {
+  color: var(--teal);
+}
+
+.hero-copy p {
+  max-width: 620px;
+  color: var(--muted);
+  font-size: 1.08rem;
+  margin: 0;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.8rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 1.4rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--navy);
+  color: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+  background: var(--panel);
+  color: var(--navy);
+  border: 1px solid var(--border);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.hero-note {
+  margin-top: 1.3rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.hero-note a {
+  color: var(--teal);
+  font-weight: 800;
+}
+
+.hero-card {
+  position: relative;
+  background: linear-gradient(180deg, #f4f8fc, #edf7fb);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero-card-top h3 {
+  margin: 1rem 0 0;
+  font-size: clamp(1.65rem, 2.5vw, 2.3rem);
+  line-height: 1.2;
+  color: var(--navy);
+}
+
+.tag {
+  display: inline-block;
+  background: var(--teal-soft);
+  color: var(--navy);
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mini-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+}
+
+.mini-tags span {
+  display: inline-block;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--navy);
+  border-radius: 999px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.hero-badge {
+  position: absolute;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  background: var(--navy);
+  color: var(--panel);
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  box-shadow: var(--shadow);
+}
+
+.trust-bar {
+  background: linear-gradient(90deg, #0c213d, #0d2f56);
+  color: var(--panel);
+  padding: 1.2rem 0;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: center;
+}
+
+.trust-item strong {
+  font-size: 1rem;
+}
+
+.trust-item span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.82rem;
+}
+
+.section {
+  padding: 88px 0;
+}
+
+.section-head {
+  max-width: 760px;
+  margin: 0 auto 2.2rem;
+  text-align: center;
+}
+
+.section-head.left {
+  text-align: left;
+  margin: 0 0 1.25rem;
+}
+
+.section-head h2 {
+  margin: 0.7rem 0 0.5rem;
+  color: var(--navy);
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.1;
+}
+
+.section-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.04rem;
+}
+
+.programmes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.programme-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  box-shadow: var(--shadow);
+}
+
+.programme-card.featured {
+  background: linear-gradient(180deg, #ebfbfd, #f6f9fc);
+  border-color: rgba(26, 180, 191, 0.18);
+}
+
+.programme-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--teal-soft);
+  color: var(--teal);
+  font-size: 1.7rem;
+  font-weight: 900;
+}
+
+.programme-card h3 {
+  margin: 1rem 0 0.8rem;
+  color: var(--navy);
+  font-size: 1.42rem;
+  line-height: 1.3;
+}
+
+.price {
+  display: flex;
+  align-items: end;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.price strong {
+  color: var(--navy);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.price span {
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.programme-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.programme-outcome {
+  margin-top: 1rem;
+  color: var(--navy);
+  line-height: 1.5;
+}
+
+.card-link {
+  display: inline-block;
+  margin-top: 1.2rem;
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.split-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.mission-panel {
+  background: linear-gradient(180deg, #f4fbff, #eef5ff);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
+}
+
+.mission-panel h3 {
+  margin: 0.8rem 0 0.9rem;
+  color: var(--navy);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.2;
+}
+
+.mission-panel p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.about-content p {
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.95rem;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.list-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--teal);
+  border-radius: 50%;
+  margin-top: 0.45rem;
+  flex-shrink: 0;
+}
+
+.feature-list strong {
+  color: var(--navy);
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.step-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+}
+
+.step-label {
+  display: inline-block;
+  background: var(--teal-soft);
+  color: var(--navy);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  margin-bottom: 0.8rem;
+}
+
+.step-card h3 {
+  margin: 0 0 0.75rem;
+  color: var(--navy);
+  font-size: 1.28rem;
+}
+
+.step-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.faq-list {
+  display: grid;
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.1rem 1.2rem;
+  box-shadow: var(--shadow);
+}
+
+.faq-question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--navy);
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  font: inherit;
+  font-weight: 800;
+}
+
+.faq-toggle {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--teal);
+}
+
+.faq-answer {
+  display: none;
+  margin-top: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+.cta-band {
+  background: linear-gradient(135deg, var(--navy), #143c67);
+  border-radius: var(--radius);
+  padding: 2rem;
+  color: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.kicker.light {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cta-band h2 {
+  margin: 0.7rem 0 0.5rem;
+  color: var(--panel);
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+}
+
+.cta-band p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.site-footer {
+  background: #0d1d30;
+  color: var(--panel);
+  padding: 3rem 0 1.2rem;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  max-width: 460px;
+}
+
+.footer-brand p {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.footer-links {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.footer-links h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--panel);
+}
+
+.footer-links a {
+  display: block;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 0.55rem;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.back-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--panel);
+  box-shadow: var(--shadow);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+.back-top.show {
+  display: grid;
+  place-items: center;
+}
+
+.auth-page {
+  min-height: calc(100vh - 82px);
+  display: grid;
+  place-items: center;
+  padding: 60px 0;
+}
+
+.auth-shell {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.auth-visual {
+  background: linear-gradient(135deg, var(--navy), #173a5c);
+  color: #fff;
+  padding: 52px 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-kicker {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #dfeef5;
+  margin-bottom: 12px;
+}
+
+.auth-visual h1 {
+  margin: 0 0 14px;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+
+.auth-visual p {
+  margin: 0 0 18px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.auth-visual ul {
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.auth-card {
+  padding: 40px 32px;
+  background: #fff;
+}
+
+.auth-header {
+  margin-bottom: 1.5rem;
+}
+
+.auth-header h2 {
+  margin: 0.8rem 0 0;
+  color: var(--navy);
+  font-size: 2rem;
+  letter-spacing: -0.05em;
+}
+
+.google-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #dfe7ef;
+  background: #fff;
+  color: var(--navy);
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(13, 32, 56, 0.02);
+}
+
+.google-icon {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #f0f4f8;
+  font-weight: 900;
+  font-size: 0.7rem;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: var(--border);
+  flex: 1;
+}
+
+#signinForm,
+#signupForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid #dfe7ef;
+  border-radius: 12px;
+  background: #f9fbfd;
+  padding: 12px 14px;
+  color: var(--text);
+}
+
+.field input:focus {
+  outline: 2px solid rgba(21, 122, 148, 0.14);
+  border-color: var(--teal);
+}
+
+.auth-row,
+.terms-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.auth-row a,
+.auth-switch a {
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terms-row {
+  justify-content: flex-start;
+  margin-top: 4px;
+}
+
+.terms-row input {
+  margin-top: 3px;
+}
+
+.auth-switch {
+  margin: 20px 0 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+.status {
+  min-height: 24px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.status.success {
+  color: #0d8b58;
+}
+
+.status.error {
+  color: #c53a32;
+}
+
+@media (max-width: 980px) {
+  .hero-grid,
+  .split-layout,
+  .auth-shell,
+  .programmes-grid,
+  .process-grid {
+    grid-template-columns: 1fr;
   }
-};
 
-const redirectAfterAuth = () => {
-  const currentPath = window.location.pathname.split('/').pop();
-  if (currentPath === 'signin.html' || currentPath === 'signup.html') {
-    window.location.href = 'index.html';
+  .cta-band {
+    flex-direction: column;
+    align-items: flex-start;
   }
-};
+}
 
-const showLocalServerWarning = () => {
-  if (window.location.protocol === 'file:') {
-    alert('Please run this app from a local web server, for example:\n\npython -m http.server 8000\n\nThen open http://localhost:8000');
+@media (max-width: 760px) {
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
-};
 
-const navToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-
-if (navToggle && navLinks) {
-  navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    const isOpen = navLinks.classList.contains('open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-}
-
-document.querySelectorAll('.faq-question').forEach(button => {
-  button.addEventListener('click', () => {
-    const item = button.closest('.faq-item');
-    const isOpen = item.classList.contains('active');
-
-    document.querySelectorAll('.faq-item').forEach(faq => {
-      faq.classList.remove('active');
-      const question = faq.querySelector('.faq-question span:last-child');
-      if (question) question.textContent = '+';
-    });
-
-    if (!isOpen) {
-      item.classList.add('active');
-      button.querySelector('span:last-child').textContent = '−';
-    }
-  });
-});
-
-const googleButtons = document.querySelectorAll('[data-google-auth]');
-
-googleButtons.forEach((button) => {
-  button.addEventListener('click', async () => {
-    if (window.location.protocol === 'file:') {
-      showLocalServerWarning();
-      return;
-    }
-
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
-      saveLocalUser({
-        name: user.displayName || 'Google User',
-        email: user.email,
-        photoURL: user.photoURL || '',
-        provider: 'google'
-      });
-      redirectAfterAuth();
-    } catch (error) {
-      console.error('Google auth error:', error);
-      alert('Google sign-in was cancelled or failed. Please try again.');
-    }
-  });
-});
-
-const signinForm = document.getElementById('signinForm');
-if (signinForm) {
-  signinForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const email = document.getElementById('signin-email').value.trim();
-    const password = document.getElementById('signin-password').value.trim();
-
-    if (window.location.protocol === 'file:') {
-      showLocalServerWarning();
-      return;
-    }
-
-    if (!email || !password) {
-      alert('Please enter your email and password.');
-      return;
-    }
-
-    try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
-      const user = result.user;
-      saveLocalUser({
-        name: user.displayName || 'Learner',
-        email: user.email,
-        provider: 'email'
-      });
-      redirectAfterAuth();
-    } catch (error) {
-      console.error('Email sign-in error:', error);
-      alert('Unable to sign in. Please check your email and password or create an account.');
-    }
-  });
-}
-
-const signupForm = document.getElementById('signupForm');
-if (signupForm) {
-  signupForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const name = document.getElementById('signup-name').value.trim();
-    const email = document.getElementById('signup-email').value.trim();
-    const password = document.getElementById('signup-password').value.trim();
-
-    if (window.location.protocol === 'file:') {
-      showLocalServerWarning();
-      return;
-    }
-
-    if (!name || !email || !password) {
-      alert('Please complete all sign up fields.');
-      return;
-    }
-
-    try {
-      const result = await createUserWithEmailAndPassword(auth, email, password);
-      const user = result.user;
-      saveLocalUser({
-        name: name || user.displayName || 'New Learner',
-        email: user.email,
-        provider: 'email'
-      });
-      redirectAfterAuth();
-    } catch (error) {
-      console.error('Email sign-up error:', error);
-      alert('Unable to create your account. Please check your details and try again.');
-    }
-  });
-}
-
-onAuthStateChanged(auth, (user) => {
-  const userBadge = document.getElementById('userBadge');
-  if (userBadge) {
-    if (user?.email) {
-      userBadge.textContent = user.displayName || user.email.split('@')[0];
-    } else {
-      const localUser = getLocalUser();
-      if (localUser?.email) {
-        userBadge.textContent = localUser.name || localUser.email.split('@')[0];
-      }
-    }
+  .nav {
+    position: relative;
   }
-});
 
-const form = document.getElementById('enquiryForm');
-const formStatus = document.getElementById('formStatus');
+  .nav-links {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 72px;
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 14px;
+    box-shadow: var(--shadow);
+    flex-direction: column;
+  }
 
-if (form) {
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
+  .nav-links.open {
+    display: flex;
+  }
 
-    if (!this.checkValidity()) {
-      this.reportValidity();
-      return;
-    }
+  .nav-links a {
+    width: 100%;
+    padding: 12px 10px;
+  }
 
-    const consent = document.getElementById('consent').checked;
-    if (!consent) {
-      formStatus.textContent = 'Please confirm your consent before submitting.';
-      formStatus.className = 'form-status show error';
-      return;
-    }
+  .hero {
+    padding-top: 52px;
+  }
 
-    const fullName = document.getElementById('fullName').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const programme = document.getElementById('programme').value;
-    const message = document.getElementById('message').value.trim();
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-    formStatus.textContent = 'Opening your email app with your enquiry...';
-    formStatus.className = 'form-status show success';
+  .hero-actions .btn {
+    width: 100%;
+  }
 
-    const subject = 'Programme enquiry — ' + programme;
-    const body =
-      'Hello Bravelyn Digital Academy,\n\n' +
-      'I would like to enquire about your programme.\n\n' +
-      'Name: ' + fullName + '\n' +
-      'Email: ' + email + '\n' +
-      'Programme: ' + programme + '\n\n' +
-      'Enquiry:\n' + message;
+  .trust-grid,
+  .programmes-grid,
+  .process-grid,
+  .feature-list {
+    grid-template-columns: 1fr;
+  }
 
-    window.location.href =
-      'mailto:wisdomkwametorku123@gmail.com?subject=' +
-      encodeURIComponent(subject) +
-      '&body=' + encodeURIComponent(body);
-  });
+  .auth-card,
+  .auth-visual {
+    padding: 28px 22px;
+  }
 }
-
-const backTop = document.getElementById('backTop');
-if (backTop) {
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) backTop.classList.add('show');
-    else backTop.classList.remove('show');
-  });
-
-  backTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-
-const yearNode = document.getElementById('year');
-if (yearNode) yearNode.textContent = new Date().getFullYear();

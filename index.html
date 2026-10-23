@@ -1,3 +1,152 @@
-  <script type="module" src="script.js"></script>
-</body>
-</html>
+document.addEventListener("DOMContentLoaded", () => {
+  const navToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+      const isOpen = navLinks.classList.contains("open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  document.querySelectorAll(".faq-item").forEach((item) => {
+    const button = item.querySelector(".faq-question");
+    const toggle = item.querySelector(".faq-toggle");
+
+    button?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("active");
+
+      document.querySelectorAll(".faq-item").forEach((faq) => {
+        faq.classList.remove("active");
+        const faqToggle = faq.querySelector(".faq-toggle");
+        if (faqToggle) faqToggle.textContent = "+";
+      });
+
+      if (!isOpen) {
+        item.classList.add("active");
+        if (toggle) toggle.textContent = "−";
+      }
+    });
+  });
+
+  const backTop = document.getElementById("backTop");
+  if (backTop) {
+    const toggleBackTop = () => {
+      if (window.scrollY > 500) {
+        backTop.classList.add("show");
+      } else {
+        backTop.classList.remove("show");
+      }
+    };
+
+    window.addEventListener("scroll", toggleBackTop);
+    toggleBackTop();
+
+    backTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  const setStatus = (elementId, message, type) => {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+
+    el.textContent = message;
+    el.className = "status";
+    if (type) el.classList.add(type);
+  };
+
+  const signinForm = document.getElementById("signinForm");
+  if (signinForm) {
+    signinForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const email = document.getElementById("signin-email").value.trim();
+      const password = document.getElementById("signin-password").value.trim();
+
+      if (!email || !password) {
+        setStatus("signinStatus", "Please enter both email and password.", "error");
+        return;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        setStatus("signinStatus", "Please enter a valid email address.", "error");
+        return;
+      }
+
+      const savedUser = JSON.parse(localStorage.getItem("bravelyn_user") || "null");
+      if (savedUser && savedUser.email && savedUser.email.toLowerCase() === email.toLowerCase()) {
+        setStatus("signinStatus", `Welcome back, ${savedUser.name || savedUser.email}!`, "success");
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 700);
+        return;
+      }
+
+      const user = {
+        name: email.split("@")[0],
+        email,
+        provider: "email"
+      };
+
+      localStorage.setItem("bravelyn_user", JSON.stringify(user));
+      setStatus("signinStatus", "Signed in successfully.", "success");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 700);
+    });
+  }
+
+  const signupForm = document.getElementById("signupForm");
+  if (signupForm) {
+    signupForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById("signup-name").value.trim();
+      const email = document.getElementById("signup-email").value.trim();
+      const password = document.getElementById("signup-password").value.trim();
+
+      if (!name || !email || !password) {
+        setStatus("signupStatus", "Please complete all sign-up fields.", "error");
+        return;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        setStatus("signupStatus", "Please enter a valid email address.", "error");
+        return;
+      }
+
+      if (password.length < 6) {
+        setStatus("signupStatus", "Password must be at least 6 characters long.", "error");
+        return;
+      }
+
+      const user = {
+        name,
+        email,
+        provider: "email"
+      };
+
+      localStorage.setItem("bravelyn_user", JSON.stringify(user));
+      setStatus("signupStatus", "Your account has been created successfully.", "success");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 700);
+    });
+  }
+
+  const yearNode = document.getElementById("year");
+  if (yearNode) {
+    yearNode.textContent = new Date().getFullYear();
+  }
+});
